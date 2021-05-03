@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<bean id="loggerConfig" class="com.spring.util.LoggerConfig" init-method="initLogger">
+		<!-- Set Up Setter Injection -->
+		<property name="rootLoggerLevel" value="FINE"/>
+		<property name="printLoggerLevel" value="FINE"/>
+	</bean>
+	
+	<!-- Bean Scopes available:
+		1. singleton 		- Single Shared Bean Instance(Default)
+		2. prototype 		- New Bean Instance per Container Request
+		3. request 			- Scoped to an HTTP Request(Web Apps)
+		4. session			- Scoped to an HTTP Session(Web Apps)
+		5. global-session	- Scoped to global HTTP Web Session(Web Apps)-->
+	
+	<!-- First define the dependencies: -->
+	<bean id="myFortuneService" class="com.spring.demo.LuckyFortuneService">
+	</bean>
+	
+	<!-- Bean using Custom Initialization & Destruction Methods: 
+		A Custom Init/Destroy Method can have:
+		* Any Access Specifier
+		* Any Return Type(although anything other than void won't make much sense, as these can't be caught by us/application)
+		* Any Method Name
+		* Should have No-Arguments in the Method
+		
+		Note**: In case of a Prototype Bean, Spring will never call a Custom Destroy Method for it,
+				hence Client Code must take care of the essential Clean Up required before Prototype
+				Bean Destruction.
+	-->
+	<bean id="coach"
+		class="com.spring.demo.FootballCoach"
+		init-method="customInit"
+		destroy-method="customDestroy">
+		<!-- Set up Constructor Injection -->
+		<constructor-arg ref="myFortuneService"/>
+	</bean>
+	
+</beans>

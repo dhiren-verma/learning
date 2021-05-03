@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- Steps in which Container makes Beans:
+		1. Container Started
+		2. Bean Instantiated
+		3. Dependencies Injected
+		4. Internal Spring Processing
+		5. Your Custom Init Method
+		6. Bean is Ready for use
+		.
+		.
+		.
+		.
+		n-2. Container is Shutdown(context.close())
+		n-1. Your Custom Destroy Method for Beans managed by Container(!Prototype)(called before Beans life-cycle is over)
+		n. Application Stop
+		
+		
+		Been Life-cycle Methods/Hooks:
+		* We can add Custom Code during Bean Initialization:
+			# Calling custom Business Logic Methods
+			# Setting up handles to resources(db, files, sockets, etc.)
+			
+		* We can add Custom Code during Bean Destruction:
+			# Calling custom Business Logic Methods
+			# Releasing handles to resources(db, files, sockets, etc.)
+			
+		-->
+	
+	<!-- load the properties file -->
+	<context:property-placeholder location="classpath:file.properties"/>
+	
+	<bean id="loggerConfig" class="com.spring.util.LoggerConfig" init-method="initLogger">
+		<!-- Set Up Setter Injection -->
+		<property name="rootLoggerLevel" value="FINE"/>
+		<property name="printLoggerLevel" value="FINE"/>
+	</bean>
+	
+	<!-- Bean Scopes available:
+		1. singleton 		- Single Shared Bean Instance(Default)
+		2. prototype 		- New Bean Instance per Container Request
+		3. request 			- Scoped to an HTTP Request(Web Apps)
+		4. session			- Scoped to an HTTP Session(Web Apps)
+		5. global-session	- Scoped to global HTTP Web Session(Web Apps)-->
+	
+	<!-- First define the dependencies: -->
+	<bean id="myFortuneService" class="com.spring.demo.LuckyFortuneService">
+	</bean>
+	
+	<bean id="customFortuneService" class="com.spring.demo.RandomFortuneService">
+	</bean>
+	
+	<bean id="coach" class="com.spring.demo.FootballCoach">
+		<!-- Set up Constructor Injection -->
+		<!-- <constructor-arg ref="myFortuneService"/> -->
+		<constructor-arg ref="customFortuneService"/>
+		
+		<!-- 
+		<constructor-arg>
+			<bean class="com.spring.demo.RandomFortuneService"/>
+		</constructor-arg>
+		 -->
+	</bean>
+	
+	<bean id="basketballCoach" class="com.spring.demo.BasketballCoach">
+		<!-- Set up Setter Injection -->
+		<!-- <property name="fortuneService" ref="myFortuneService"/> -->
+		
+		<property name="fortuneService">
+			<bean class="com.spring.demo.LuckyFortuneService"/>
+		</property>
+		
+		<!-- Inject Literal Values: -->
+		<!-- <property name="email" value="a-z.coach@gmail.com"/> -->
+		<!-- <property name="team" value="ArizonaCardinals"/> -->
+		
+		<!-- Inject Values from Properties File -->
+		<property name="email" value="${coach.email}"/>
+		<property name="team" value="${coach.team}"/>
+	</bean>
+	
+</beans>
