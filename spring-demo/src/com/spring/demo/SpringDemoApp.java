@@ -41,6 +41,13 @@ public class SpringDemoApp {
 		System.out.println(myCoach.getDailyWorkout());
 		System.out.println(myCoach.getFortune());
 		
+		
+		Coach newCoach = context.getBean("cricketCoach", Coach.class);
+		
+		//Call methods on the new Coach Bean:
+		System.out.println(newCoach.getDailyWorkout());
+		System.out.println(newCoach.getFortune());
+		
 		//Close Application Context:
 		context.close();
 	}

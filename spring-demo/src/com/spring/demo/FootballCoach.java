@@ -27,5 +27,10 @@ public class FootballCoach implements Coach {
 	public String getFortune() {
 		return fortuneService.getFortune();
 	}
+
+//	@Override
+//	public void destroy() throws Exception {
+//		System.out.println("Destructing Football Coach using DisposableBean destroy method");
+//	}
 	
 }

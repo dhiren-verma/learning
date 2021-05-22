@@ -85,6 +85,11 @@
 		<!-- Inject Values from Properties File -->
 		<property name="email" value="${coach.email}"/>
 		<property name="team" value="${coach.team}"/>
+		
+	</bean>
+	
+	<bean id="cricketCoach" class="com.spring.demo.CricketCoach">
+		<constructor-arg ref="myFortuneService"/>
 	</bean>
 	
 </beans>
