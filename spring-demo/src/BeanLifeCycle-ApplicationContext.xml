@@ -14,6 +14,11 @@
 		<property name="printLoggerLevel" value="FINE"/>
 	</bean>
 	
+	<!-- Custom Bean Processor for processing Prototype Beans which implement DisplosableBean Interface -->
+	<bean id="customProcessor"
+    		class="com.spring.demo.prototypeBeanDestructionProcessor.MyPrototypeBeanProcessor">
+   	</bean>
+   	
 	<!-- Bean Scopes available:
 		1. singleton 		- Single Shared Bean Instance(Default)
 		2. prototype 		- New Bean Instance per Container Request
@@ -38,6 +43,15 @@
 	-->
 	<bean id="coach"
 		class="com.spring.demo.FootballCoach"
+		init-method="customInit"
+		destroy-method="customDestroy">
+		<!-- Set up Constructor Injection -->
+		<constructor-arg ref="myFortuneService"/>
+	</bean>
+	
+	<bean id="prototypeCoach"
+		class="com.spring.demo.CricketCoach"
+		scope="prototype"
 		init-method="customInit"
 		destroy-method="customDestroy">
 		<!-- Set up Constructor Injection -->

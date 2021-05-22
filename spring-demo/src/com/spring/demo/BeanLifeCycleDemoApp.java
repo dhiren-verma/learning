@@ -13,6 +13,11 @@ public class BeanLifeCycleDemoApp {
 		
 		System.out.println(myCoach.getDailyWorkout());
 		
+		//Retrieve Prototype Bean from Spring Container:
+		Coach prototypeCoach = context.getBean("prototypeCoach", Coach.class);
+		
+		System.out.println("PrototypeCoach says: "+prototypeCoach.getDailyWorkout());
+		
 		//Close Spring Container:
 		context.close();
 	}
