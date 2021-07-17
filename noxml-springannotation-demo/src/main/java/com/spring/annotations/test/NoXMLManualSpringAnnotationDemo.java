@@ -12,6 +12,8 @@ public class NoXMLManualSpringAnnotationDemo {
 		//Read Spring Configuration Java Class:
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 		
+		System.out.println("Application Context initialized");
+		
 		//Get a Bean from the Spring Context:
 		BoxingCoach boxingCoach = context.getBean("boxingCoach", BoxingCoach.class);
 		

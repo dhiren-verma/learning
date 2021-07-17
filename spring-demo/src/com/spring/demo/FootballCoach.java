@@ -1,6 +1,9 @@
 package com.spring.demo;
 
-public class FootballCoach implements Coach {
+//import org.springframework.beans.factory.DisposableBean;
+//import org.springframework.beans.factory.InitializingBean;
+
+public class FootballCoach implements Coach {//, InitializingBean, DisposableBean {
 	
 	//Private field for Dependency:
 	private FortuneService fortuneService;
@@ -31,6 +34,11 @@ public class FootballCoach implements Coach {
 //	@Override
 //	public void destroy() throws Exception {
 //		System.out.println("Destructing Football Coach using DisposableBean destroy method");
+//	}
+//
+//	@Override
+//	public void afterPropertiesSet() throws Exception {
+//		System.out.println("Initializing Football Coach using InitializingBean afterPropertiesSet method");		
 //	}
 	
 }

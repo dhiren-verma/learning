@@ -7,7 +7,7 @@ import com.spring.annotations.interfaces.Coach;
 import com.spring.annotations.springConfig.SpringConfiguration;
 
 public class NoXMLSpringAnnotationDemo {
-
+	
 	public static void main(String[] args) {
 		//Read Spring Configuration Java Class:
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);

@@ -16,9 +16,9 @@ public class BiDirectionalSelectDemo {
 				.addAnnotatedClass(Instructor.class)
 				.buildSessionFactory();
 		
+		Session session = factory.getCurrentSession();
+		
 		try {
-			Session session = factory.getCurrentSession();
-			
 			int instructorDetailId = 2;
 			
 			session.beginTransaction();
@@ -33,6 +33,8 @@ public class BiDirectionalSelectDemo {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
+			session.close();
+			
 			factory.close();
 		}
 	}

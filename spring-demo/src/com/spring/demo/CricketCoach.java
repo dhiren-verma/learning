@@ -38,8 +38,7 @@ public class CricketCoach implements Coach, DisposableBean {
 	
 	@Override
 	public void destroy() throws Exception {
-		System.out.println("Calling CricketCoach destroy() method inherited from DisposableBean\n"
-				+ "with the help of Custom Prototype Bean Processor");
+		System.out.println("Calling CricketCoach destroy() method inherited from DisposableBean");
 	}
 	
 }

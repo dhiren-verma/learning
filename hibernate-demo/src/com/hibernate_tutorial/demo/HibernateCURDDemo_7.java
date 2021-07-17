@@ -78,6 +78,7 @@ public class HibernateCURDDemo_7 {
 		} finally {
 			factory.close();
 		}
+		
 	}
 
 }

@@ -22,7 +22,7 @@ public @interface CourseCode {
 	//Default Value if the Custom Annotation User doesn't explicitly mention a Value: 
 	public String value() default "JAVA";
 	
-	//Default Error Message if the Custom Annotation User doesn't explicitly mention a Error Message:
+	//Default Error Message if the Custom Annotation User doesn't explicitly mention an Error Message:
 	public String message() default "must start with JAVA";
 	
 	//Default Groups: can group related Constraints:

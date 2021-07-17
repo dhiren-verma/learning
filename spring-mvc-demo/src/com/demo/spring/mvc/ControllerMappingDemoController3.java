@@ -30,4 +30,5 @@ public class ControllerMappingDemoController3 {
 		
 		return "new-registration-successful";
 	}
+	
 }

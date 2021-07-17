@@ -60,6 +60,7 @@ public class MyPrototypeBeanProcessor implements DisposableBean, BeanPostProcess
 					DisposableBean disposablePrototypeBean = (DisposableBean) prototypeBean;
 					
 					try {
+						System.out.println("Destroying Prototype Bean of Class type: "+disposablePrototypeBean.getClass()+" with the help of MyPrototypeBeanProcessor");
 						disposablePrototypeBean.destroy();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

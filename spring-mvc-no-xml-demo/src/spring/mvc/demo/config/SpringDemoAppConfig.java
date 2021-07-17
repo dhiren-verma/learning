@@ -28,4 +28,5 @@ public class SpringDemoAppConfig {
 		
 		return viewResolver;
 	}
+	
 }
