@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Illustrates Bean Definition for registering Static Inner Class of an Outer Class: -->
+	<bean id ="staticInnerObj"
+		class="com.springtutorial.xml_tutorial.bean.instantiation.OuterClass$StaticInnerClass">
+   <!-- class="com.springtutorial.xml_tutorial.bean.instantiation.OuterClass.StaticInnerClass" is also acceptable--> 
+		<property name="innerId" value="127"/>
+		<property name="innerField" value="Hello World"/>
+	</bean>
+	
+	
+	<!-- Illustrates Basic Constructor Bean Definition: -->
+	<bean id="basicConstructorBean"
+	  class="com.springtutorial.xml_tutorial.bean.instantiation.BasicConstructorInstantiation">
+		<constructor-arg value="Simple Constructor Example"/>  
+	</bean>
+	
+	<!-- Illustrates Static Factory Method Instantiation:
+		 In this, we provide 'Fully Qualified Name' of the Class that contains
+		 Static Factory Method which is to be called. The Class of the returned
+		 Instance is not mentioned: -->
+	<bean id="clientService"
+	  class="com.springtutorial.xml_tutorial.bean.instantiation.ClientService"
+	  factory-method="getClientService" />
+	  
+	  
+	<!-- Illustrates Static Factory Method Instantiation:
+		 In this, we provide 'Fully Qualified Name' of the Class that contains
+		 Static Factory Method which is to be called. The Class of the returned
+		 Instance is not mentioned: -->
+	<bean id="itemService"
+	  class="com.springtutorial.xml_tutorial.bean.instantiation.ServiceLocator"
+	  factory-method="getItemService" />
+	  
+	 
+	<!-- Illustrates Static Factory Method Instantiation:
+		 In this, we provide 'Fully Qualified Name' of the Class that contains
+		 Static Factory Method which is to be called. The Class of the returned
+		 Instance is not mentioned: -->
+	<bean id="storeService"
+	  class="com.springtutorial.xml_tutorial.bean.instantiation.ServiceLocator"
+	  factory-method="getStoreService" />
+	
+	
+	<!-- Illustrates Instance Factory Method Instantiation process:
+		 In this, we first create the Bean Instance for the the Class which holds
+		 the Instance Factory Method.
+		 Then we define the Bean Definition for the Bean which will be created by
+		 the Instance Factory Method.
+		 Point to be noted is that here we don't provide the fully qualified Class
+		 Name of the Bean that will be returned by the Instance Factory Method: -->
+	
+	<bean id="defaultServiceLocator"
+	  class="com.springtutorial.xml_tutorial.bean.instantiation.DefaultServiceLocater"/>
+	  
+	<bean id="defaultClientService"
+	  factory-bean="defaultServiceLocator"
+	  factory-method="getDefaultClientService"/>
+	  
+	  
+</beans>

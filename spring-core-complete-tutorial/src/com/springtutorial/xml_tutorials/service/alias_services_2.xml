@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Services: -->
+	<bean id="cookieStore"
+		name="myCookieStore,firstCookeStore;onlyCookieStore aCookieStore"
+		class="com.springtutorial.xml_tutorials.service.CookieStoreServiceImplementation">
+		<constructor-arg ref="cookieStoreAccountDao"/>
+		<constructor-arg ref="cookieStoreItemDao"/>
+	</bean>
+	
+	<alias name="accountDao" alias="cookieStoreAccountDao"/>
+	
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="bean2" class="com.springtutorial.xml_tutorial.bean.constructorInjection.SampleTwo"/>
+	<bean id="bean3" class="com.springtutorial.xml_tutorial.bean.constructorInjection.SampleThree"/>
+	
+	<!-- The Constructor Arguments referenced in this Bean Definition are not 
+		related in any manner, therefore there is no ambiguity in Constructor
+		Argument Resolution. Therefore it doens't matter even if the Parameters
+		are Jumbled, because while inserting Dependencies, they are sorted by
+		their Type & Inserted: -->
+	<bean id="bean1" class="com.springtutorial.xml_tutorial.bean.constructorInjection.SampleOne">
+		<constructor-arg ref="bean3"/>
+		<constructor-arg ref="bean2"/>
+	</bean>
+	
+	<!-- But in case if more than 1 Argument are either of Same Type, or Simple 
+		Type, then this creates an Ambiguity, which has to be resolved in Bean
+		Definition itself: -->
+	
+	<!-- 1. Pass the Arguments in the same order as are expected by the relevant 
+		Constructor: --> 
+	<bean id="user" class="com.springtutorial.xml_tutorial.bean.constructorInjection.User">
+		<constructor-arg value="1001"/>
+		<constructor-arg value="Dhiren"/>
+	</bean>
+	
+	<!-- 2. Constructor Argument Type Matching: -->
+	<bean id="user1" class="com.springtutorial.xml_tutorial.bean.constructorInjection.User">
+		<constructor-arg type="java.lang.String" value="Dhiren"/>
+		<constructor-arg type="int" value="1001"/>
+	</bean>
+	
+	<!-- 3. Constructor Argument Index - Can even resolve if the Constructor 
+		has two or more Arguments of same type: -->
+	<bean id="user2" class="com.springtutorial.xml_tutorial.bean.constructorInjection.User">
+		<constructor-arg index="1" value="Dhiren"/>
+		<constructor-arg index="0" value="1001"/>
+	</bean>
+
+	<!-- 2. Constructor Argument Name - to work out-of-the-box either the Code 
+		should be compiled with 'true' debug flag, or the Constructor should be
+		annotated with @ConstructorProperties JDK Annotation : -->
+	<bean id="user3" class="com.springtutorial.xml_tutorial.bean.constructorInjection.User">
+		<constructor-arg name="name" value="Dhiren"/>
+		<constructor-arg name="id" value="1001"/>
+	</bean>
+	
+	
+</beans>
