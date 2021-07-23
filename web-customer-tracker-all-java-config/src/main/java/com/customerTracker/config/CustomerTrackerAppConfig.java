@@ -30,6 +30,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
+@EnableAspectJAutoProxy									//To add support for AspectJ Auto-proxy for AOP
+														//so as to be able to process @Aspect Class files
 @ComponentScan("com.customerTracker")
 @PropertySource("classpath:persistence-mysql.properties")
 public class CustomerTrackerAppConfig implements WebMvcConfigurer {

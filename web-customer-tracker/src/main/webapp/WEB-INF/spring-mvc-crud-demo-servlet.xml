@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		xmlns:context="http://www.springframework.org/schema/context"
+    	xmlns:aop="http://www.springframework.org/schema/aop"
     	xmlns:tx="http://www.springframework.org/schema/tx"
 		xmlns:mvc="http://www.springframework.org/schema/mvc"
 		xsi:schemaLocation="
@@ -21,6 +22,9 @@
 	
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven />
+	
+	<!-- Add support for AspectJ Autoproxy for AOP, so as to process @Aspect classes -->
+	<aop:aspectj-autoproxy />
 	
 	<!-- Define Spring MVC view resolver -->
 	<bean
