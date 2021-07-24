@@ -1,4 +1,4 @@
-package com.hibernate_tutorial.one_to_many.demo.entity;
+package com.hibernate_tutorial.eager_VS_lazy.demo.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

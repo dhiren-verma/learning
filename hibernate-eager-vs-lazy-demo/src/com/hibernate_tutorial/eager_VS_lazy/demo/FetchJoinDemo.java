@@ -1,13 +1,13 @@
-package com.hibernate_tutorial.one_to_many.demo;
+package com.hibernate_tutorial.eager_VS_lazy.demo;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.hibernate_tutorial.one_to_many.demo.entity.Course;
-import com.hibernate_tutorial.one_to_many.demo.entity.Instructor;
-import com.hibernate_tutorial.one_to_many.demo.entity.InstructorDetail;
+import com.hibernate_tutorial.eager_VS_lazy.demo.entity.Course;
+import com.hibernate_tutorial.eager_VS_lazy.demo.entity.Instructor;
+import com.hibernate_tutorial.eager_VS_lazy.demo.entity.InstructorDetail;
 
 public class FetchJoinDemo {
 

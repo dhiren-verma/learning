@@ -1,4 +1,4 @@
-package com.hibernate_tutorial.util.parser;
+package com.hibernate_tutorial.demo.util.parser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

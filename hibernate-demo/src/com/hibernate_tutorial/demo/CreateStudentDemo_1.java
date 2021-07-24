@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.hibernate_tutorial.demo.entity.Student;
-import com.hibernate_tutorial.util.parser.DateTimeUtil;
+import com.hibernate_tutorial.demo.util.parser.DateTimeUtil;
 
 public class CreateStudentDemo_1 {
 

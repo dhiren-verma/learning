@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.hibernate_tutorial.util.parser.DateTimeUtil;
+import com.hibernate_tutorial.demo.util.parser.DateTimeUtil;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
