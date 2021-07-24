@@ -1,4 +1,4 @@
-package com.customerTracker.controller;
+package com.learning.webCustomerTracker_AllJavaConfig.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.customerTracker.entity.Customer;
-import com.customerTracker.service.CustomerService;
-import com.customerTracker.util.SortUtil;
+import com.learning.webCustomerTracker_AllJavaConfig.entity.Customer;
+import com.learning.webCustomerTracker_AllJavaConfig.service.CustomerService;
+import com.learning.webCustomerTracker_AllJavaConfig.util.SortUtil;
 
 @Controller
 @RequestMapping("/customer")

@@ -1,4 +1,4 @@
-package com.customerTracker.config;
+package com.learning.webCustomerTracker_AllJavaConfig.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

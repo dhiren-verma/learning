@@ -1,4 +1,4 @@
-package com.customerTracker.entity;
+package com.learning.webCustomerTracker_AllJavaConfig.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

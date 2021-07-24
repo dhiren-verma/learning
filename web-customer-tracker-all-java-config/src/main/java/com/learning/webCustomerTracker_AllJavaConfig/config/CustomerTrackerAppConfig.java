@@ -1,4 +1,4 @@
-package com.customerTracker.config;
+package com.learning.webCustomerTracker_AllJavaConfig.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
@@ -32,7 +32,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 @EnableAspectJAutoProxy									//To add support for AspectJ Auto-proxy for AOP
 														//so as to be able to process @Aspect Class files
-@ComponentScan("com.customerTracker")
+@ComponentScan("com.learning.webCustomerTracker_AllJavaConfig")
 @PropertySource("classpath:persistence-mysql.properties")
 public class CustomerTrackerAppConfig implements WebMvcConfigurer {
 	

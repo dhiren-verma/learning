@@ -1,4 +1,4 @@
-package com.customerTracker.service;
+package com.learning.webCustomerTracker_AllJavaConfig.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.customerTracker.dao.CustomerDAO;
-import com.customerTracker.entity.Customer;
+import com.learning.webCustomerTracker_AllJavaConfig.dao.CustomerDAO;
+import com.learning.webCustomerTracker_AllJavaConfig.entity.Customer;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {

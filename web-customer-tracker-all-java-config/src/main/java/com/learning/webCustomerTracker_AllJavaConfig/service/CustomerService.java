@@ -1,10 +1,10 @@
-package com.customerTracker.dao;
+package com.learning.webCustomerTracker_AllJavaConfig.service;
 
 import java.util.List;
 
-import com.customerTracker.entity.Customer;
+import com.learning.webCustomerTracker_AllJavaConfig.entity.Customer;
 
-public interface CustomerDAO {
+public interface CustomerService {
 	
 	public List<Customer> getCustomers(int sortField);
 	
