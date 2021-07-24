@@ -1,4 +1,4 @@
-package com.customerTracker.util;
+package com.learning.webCustomerTracker.util;
 
 public class SortUtil {
 	

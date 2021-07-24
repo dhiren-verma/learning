@@ -1,4 +1,4 @@
-package com.customerTracker.dao;
+package com.learning.webCustomerTracker.dao;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.customerTracker.entity.Customer;
+import com.learning.webCustomerTracker.entity.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {

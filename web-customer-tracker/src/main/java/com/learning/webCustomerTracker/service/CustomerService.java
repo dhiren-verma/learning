@@ -1,16 +1,16 @@
-package com.customerTracker.dao;
+package com.learning.webCustomerTracker.service;
 
 import java.util.List;
 
-import com.customerTracker.entity.Customer;
+import com.learning.webCustomerTracker.entity.Customer;
 
-public interface CustomerDAO {
+public interface CustomerService {
 	
+	public List<Customer> getCustomers(int sortField);
+
 	public void saveCustomer(Customer customer);
 	
 	public Customer getCustomer(int customerId);
-	
-	public List<Customer> getCustomers(int sortField);
 	
 	public void deleteCustomer(int customerId);
 	
