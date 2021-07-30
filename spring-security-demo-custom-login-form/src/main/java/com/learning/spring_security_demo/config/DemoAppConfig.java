@@ -15,7 +15,8 @@ public class DemoAppConfig {
 	//Define Bean for View Resolver:
 	@Bean
 	public ViewResolver viewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver("/WEB-INF/view/", ".jsp");
+		InternalResourceViewResolver viewResolver =
+				new InternalResourceViewResolver("/WEB-INF/view/", ".jsp");
 		
 		return viewResolver;
 	}

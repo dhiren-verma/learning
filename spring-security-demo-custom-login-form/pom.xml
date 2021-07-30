@@ -11,22 +11,11 @@
 	<name>spring-security-demo-custom-login-form</name>
 	
   	<properties>
-  		<!-- <mysql.connector.version>8.0.25</mysql.connector.version> -->
 		<springframework.version>5.3.8</springframework.version>
 		<springsecurity.version>5.5.1</springsecurity.version>
-		<!-- <hibernate.version>5.5.2.Final</hibernate.version> -->
-		<!-- <hibernate-validator.version>6.2.0.Final</hibernate-validator.version> -->
-		<project-lombok.version>1.18.20</project-lombok.version>
 	</properties>
 	
 	<dependencies>
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>${project-lombok.version}</version>
-		    <scope>provided</scope>
-		</dependency>
-  		
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
@@ -64,11 +53,6 @@
 			<version>${springsecurity.version}</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-		</dependency>
 	</dependencies>
 	
 	<build>

@@ -12,19 +12,27 @@
 		</style>
 	</head>
 	<body>
+		<h3>My Custom Spring Security Login Form</h3>
+		
 		<form:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
 			<c:if test="${param.error!=null}" >
 				<i class="failed">Sorry! You have entered Invalid username/password</i>
 			</c:if>
 			
-			<p>
-				User-name: <input type="text" name="username" /><br/>
-			</p>
-			<p>
-				Password: <input type="password" name="password" /><br/>
-			</p>
+			<table>
+				<tr>
+					<td>User-name:</td>
+					<td><input type="text" name="username" /></td>
+				</tr>
+				
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password" /></td>
+				</tr>
+			</table>
 			
 			<input type="submit" value="Login" />
+			
 		</form:form>
 	</body>
 </html>

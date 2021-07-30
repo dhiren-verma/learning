@@ -27,12 +27,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		//Configure security of web paths in application, login, logout, etc.
 		http.authorizeRequests()
-			.anyRequest().authenticated()
+				.anyRequest().authenticated()
 			.and()
 			.formLogin()
-			.loginPage("/showLoginPage")
-			.loginProcessingUrl("/authenticateTheUser")
-			.permitAll();
+				.loginPage("/showLoginPage")
+				.loginProcessingUrl("/authenticateTheUser")
+				.permitAll();
 	}
-	
+		
 }
