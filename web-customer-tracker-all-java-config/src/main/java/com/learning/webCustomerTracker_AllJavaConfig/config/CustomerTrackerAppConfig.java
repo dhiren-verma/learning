@@ -117,7 +117,8 @@ public class CustomerTrackerAppConfig implements WebMvcConfigurer {
 		
 		return txManager;
 	}
-
+	
+	//For CSS Resources
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**")
