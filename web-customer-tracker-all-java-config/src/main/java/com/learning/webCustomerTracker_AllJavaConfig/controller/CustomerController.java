@@ -27,7 +27,7 @@ import com.learning.webCustomerTracker_AllJavaConfig.util.SortUtil;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-
+	
 	String patternStr = "^[a-zA-Z]+";
     Pattern pattern = Pattern.compile(patternStr);
     Matcher matcher = pattern.matcher("");
@@ -73,23 +73,23 @@ public class CustomerController {
 			
 			return "list-customers";
 		} catch (NumberFormatException ex) {
-			//Send an invalid Sort Filed Error Message
+			//Send an invalid Sort Field Error Message:
 			System.out.println("Number Format Exception: "+ex);
 			
-			for(StackTraceElement ste : ex.getStackTrace())
+			for (StackTraceElement ste : ex.getStackTrace())
 				System.out.println(ste);
 			
 			return "error-page";
 		} catch (IllegalArgumentException ex) {
-			//Send an invalid Sort Filed Error Message
+			//Send an invalid Sort Field Error Message:
 			System.out.println("Illegal Argument Exception: "+ex);
 			
-			for(StackTraceElement ste : ex.getStackTrace())
+			for (StackTraceElement ste : ex.getStackTrace())
 				System.out.println(ste);
 			
 			return "error-page";
 		} catch (Exception ex) {
-			//Send an invalid Sort Filed Error Message
+			//Send an invalid Sort Field Error Message:
 			System.out.println("Exception: "+ex);
 			
 			for(StackTraceElement ste : ex.getStackTrace())
