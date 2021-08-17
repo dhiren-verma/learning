@@ -16,19 +16,17 @@
 		<springframework.version>5.3.8</springframework.version>
 		<springsecurity.version>5.5.1</springsecurity.version>
 		<hibernate.version>5.5.2.Final</hibernate.version>
-		<!-- <hibernate-validator.version>6.2.0.Final</hibernate-validator.version> -->
-		<!-- <project-lombok.version>1.18.20</project-lombok.version> -->
+		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+		<project-lombok.version>1.18.20</project-lombok.version>
 	</properties>
 	
 	<dependencies>
-		<!-- 
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
 		    <version>${project-lombok.version}</version>
 		    <scope>provided</scope>
 		</dependency>
-  		 -->
   		 
   		<dependency>
   			<groupId>mysql</groupId>
@@ -36,12 +34,20 @@
   			<version>${mysql.connector.version}</version>
   		</dependency>
   		
+  		<!-- C3P0 Connection Pool: -->
   		<dependency>
   			<groupId>org.hibernate</groupId>
   			<artifactId>hibernate-c3p0</artifactId>
   			<version>${hibernate.version}</version>
   		</dependency>
   		
+		<!-- Hibernate Validation -->
+  		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>${hibernate-validator.version}</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
