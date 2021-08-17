@@ -61,19 +61,19 @@ public class RegistrationController {
 	@PostMapping("/processRegistrationForm")
 	public String processRegistration(@Valid @ModelAttribute("crmUser") CrmUser crmUser,
 			BindingResult validationResult, Model userModel) {
-		String userName = crmUser.getUserName();
-		
 		//Form Validation:
 		if (validationResult.hasErrors()) {
 			logger.warning("Vaidation Errors are found!");
 			
 			userModel.addAttribute("crmUser", new CrmUser());
 			userModel.addAttribute("roles", roles);
+			userModel.addAttribute("registrationError", "Invalid Data in fields!");
 			
 			return "registration-form";
 		}
 		
 		//Check the DB if User already exists:
+		String userName = crmUser.getUserName();
 		User existing = userService.findByUserName(userName);
 		
 		if (existing!=null) {
