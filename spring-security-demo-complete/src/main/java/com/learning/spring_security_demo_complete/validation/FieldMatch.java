@@ -11,10 +11,10 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = FieldMatchValidator.class)
+@Documented
 @Retention(RUNTIME)
 @Target({TYPE, ANNOTATION_TYPE})
-@Documented
+@Constraint(validatedBy = FieldMatchValidator.class)
 public @interface FieldMatch {
 	
 	String first();

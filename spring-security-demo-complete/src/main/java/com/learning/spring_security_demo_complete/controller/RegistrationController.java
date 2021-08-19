@@ -77,11 +77,11 @@ public class RegistrationController {
 		User existing = userService.findByUserName(userName);
 		
 		if (existing!=null) {
+			logger.warning("User name already exists!");
+			
 			userModel.addAttribute("crmUser", new CrmUser());
 			userModel.addAttribute("roles", roles);
 			userModel.addAttribute("registrationError", "User name already exists!");
-			
-			logger.warning("User name already exists!");
 			
 			return "registratiomn-form";
 		}

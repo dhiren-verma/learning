@@ -16,7 +16,8 @@ import com.learning.spring_security_demo_complete.entity.User;
 import com.learning.spring_security_demo_complete.service.UserService;
 
 @Component
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler
+		implements AuthenticationSuccessHandler {
 	
 	@Autowired
 	private UserService userService;
