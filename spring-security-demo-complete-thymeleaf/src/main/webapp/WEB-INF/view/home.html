@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Welcome to Spring Security Demo</title>
+	</head>
+	<body>
+		User: <span sec:authentication="name"> </span>
+		<br>
+		Role: <span sec:authentication="principal.authorities"> </span>
+		<br>
+		<div th:if="${session.user}">
+			<p th:text="'First name: ' + ${session.user.firstName}
+					+ ', Last name: ' + ${session.user.lastName}
+					+ ', Email: ' + ${session.user.email}">
+			</p>
+		</div>
+		
+		<h2>Welcome to Spring Security Demo!</h2>
+		
+		<div sec:authorize="hasRole('ROLE_MANAGER')">
+			<hr>
+			<p>
+				<a th:href="@{/leaders}">Leadership Meetings</a>
+				(Only for Managers)
+			</p>
+		</div>
+		
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<hr>
+			<p>
+				<a th:href="@{/systems}">IT Systems Meetings</a>
+				(Only for Administrators)
+			</p>
+		</div>
+		
+		<hr>
+		
+		<form th:action="@{/logout}" method="POST">
+			<input type="submit" value="Logout" />
+		</form>
+	</body>
+</html>

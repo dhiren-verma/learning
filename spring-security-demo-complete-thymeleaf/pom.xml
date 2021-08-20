@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>spring-security-demo-complete-thymeleaf</groupId>
+	<artifactId>spring-security-demo-complete-thymeleaf</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>war</packaging>
+	
+	<name>spring-security-demo_complete_thymeleaf</name>
+	
+	<properties>
+		<mysql.connector.version>8.0.25</mysql.connector.version>
+		<springframework.version>5.3.8</springframework.version>
+		<springsecurity.version>5.5.1</springsecurity.version>
+		<hibernate.version>5.5.2.Final</hibernate.version>
+		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+		<project-lombok.version>1.18.20</project-lombok.version>
+	</properties>
+	
+	<dependencies>
+		<!-- Lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>${project-lombok.version}</version>
+		    <scope>provided</scope>
+		</dependency>
+  		 
+  		 <!-- MySql -->
+  		<dependency>
+  			<groupId>mysql</groupId>
+  			<artifactId>mysql-connector-java</artifactId>
+  			<version>${mysql.connector.version}</version>
+  		</dependency>
+  		
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		
+  		<!-- C3P0 Connection Pool -->
+  		<dependency>
+  			<groupId>org.hibernate</groupId>
+  			<artifactId>hibernate-c3p0</artifactId>
+  			<version>${hibernate.version}</version>
+  		</dependency>
+  		
+		<!-- Hibernate Validation -->
+  		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>${hibernate-validator.version}</version>
+		</dependency>
+		
+		<!-- Servlet Support -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- Thymeleaf Core -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+			<version>3.0.12.RELEASE</version>
+		</dependency>
+		
+		<!-- Thymeleaf Secutiy -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
+		
+		<!-- Spring Web MVC -->
+  		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>${springframework.version}</version>
+		</dependency>
+		
+		<!-- Spring Security -->
+		<!-- Spring Security Web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		
+		<!-- Spring Security Config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		 -->
+		 
+		<!-- Spring Transaction -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		
+		<!-- Spring ORM -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>spring-security-demo_complete_thymeleaf</finalName>
+		
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
