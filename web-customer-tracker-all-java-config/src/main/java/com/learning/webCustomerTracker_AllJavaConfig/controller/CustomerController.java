@@ -2,9 +2,11 @@ package com.learning.webCustomerTracker_AllJavaConfig.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,16 @@ public class CustomerController {
     Pattern pattern = Pattern.compile(patternStr);
     Matcher matcher = pattern.matcher("");
     
+    private Logger logger;
+    
 	//Need to inject relevant Service to get Data from DAO:
 	@Autowired
 	private CustomerService customerService;
+	
+	@PostConstruct
+	private void initializeLogger() {
+		logger = Logger.getLogger(getClass().getName());
+	}
 	
 	//Adding pre-processing code with IntiBinder from all incoming String Data:
 	@InitBinder
@@ -49,6 +58,7 @@ public class CustomerController {
 		dataBinder.registerCustomEditor(String.class, strTrimmerEditor);
 	}
 	
+	//Employee, Manager, Admin
 	@GetMapping("/listCustomers")
 	public String listCustomers(Model listCustModel,
 			@RequestParam(value="sort", required=false) String sort) {
@@ -74,31 +84,23 @@ public class CustomerController {
 			return "list-customers";
 		} catch (NumberFormatException ex) {
 			//Send an invalid Sort Field Error Message:
-			System.out.println("Number Format Exception: "+ex);
-			
-			for (StackTraceElement ste : ex.getStackTrace())
-				System.out.println(ste);
+			logger.warning("Invalid Sort Field: "+ex);
 			
 			return "error-page";
 		} catch (IllegalArgumentException ex) {
 			//Send an invalid Sort Field Error Message:
-			System.out.println("Illegal Argument Exception: "+ex);
-			
-			for (StackTraceElement ste : ex.getStackTrace())
-				System.out.println(ste);
+			logger.warning("Invalid Sort Field: "+ex);
 			
 			return "error-page";
 		} catch (Exception ex) {
 			//Send an invalid Sort Field Error Message:
-			System.out.println("Exception: "+ex);
-			
-			for(StackTraceElement ste : ex.getStackTrace())
-				System.out.println(ste);
+			logger.warning("Invalid Sort Field: "+ex);
 			
 			return "error-page";
 		}
 	}
 	
+	//Manager, Admin
 	@GetMapping("/addCustomerForm")
 	public String showAddCustomerForm(Model addCustModel) {
 		Customer newCustomer = new Customer();
@@ -108,11 +110,12 @@ public class CustomerController {
 		return "add-customer";
 	}
 	
+	//Manager, Admin
 	@PostMapping("/addCustomer")
 	public String addCustomer(@Valid @ModelAttribute("customer")Customer newCustomer
 			, BindingResult validationResult) {
-		System.out.println("Validation Result is: "+validationResult);
-		System.out.println("\n\n\n");
+		logger.info("Validation Result is: "+validationResult);
+		logger.info("\n\n\n");
 		
 		if (validationResult.hasErrors())
 			return "add-customer";
@@ -123,6 +126,7 @@ public class CustomerController {
 		}
 	}
 	
+	//Manager, Admin
 	@GetMapping("/updateCustomerForm")
 	public String showCustomerUpdateForm(@RequestParam("customerId") int custId
 			, Model updtCustModel) {
@@ -138,11 +142,12 @@ public class CustomerController {
 		}
 	}
 	
+	//Manager, Admin
 	@PostMapping("/updateCustomer")
 	public String updateCustomer(@Valid @ModelAttribute("updtCustomer") Customer updtCustomer
 			, BindingResult validationResult) {
-		System.out.println("Validation Result is: "+validationResult);
-		System.out.println("\n\n\n");
+		logger.info("Validation Result is: "+validationResult);
+		logger.info("\n\n\n");
 		
 		if (validationResult.hasErrors())
 			return "update-customer";
@@ -153,6 +158,7 @@ public class CustomerController {
 		}
 	}
 	
+	//Admin
 	@GetMapping("/deleteCustomer")
 	public String deleteCustomer(@RequestParam("customerId") int custId) {
 		customerService.deleteCustomer(custId);
@@ -160,6 +166,7 @@ public class CustomerController {
 		return "redirect:/customer/listCustomers";
 	}
 	
+	//Employee, Manager, Admin
 	//There are Three ways to mark a Parameter as Optional:
 	//@RequestParam(value = "searchName", required=false) String searchName
 	//@RequestParam("searchName") @Nullable String searchName
