@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.learning.webCustomerTracker_AllJavaConfig.validation.ValidEmail;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,13 +42,7 @@ public class Customer {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@NotNull(message = "cannot be Null!")
-	@Size(min = 1, max = 45, message = "invalid length, shouldn't be Empty and should be less than 45 characters!")
-	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]"
-			+ "+(?:\\.[a-zA-Z0-9_+&*-]+)"
-			+ "*@(?:[a-zA-Z0-9-]+\\.)"
-			+ "+[a-zA-Z]{2,7}", 
-			message = "input a valid E-Mail")
+	@ValidEmail(message = "input a valid E-Mail")
 	@Column(name = "email")
 	private String email;
 	
