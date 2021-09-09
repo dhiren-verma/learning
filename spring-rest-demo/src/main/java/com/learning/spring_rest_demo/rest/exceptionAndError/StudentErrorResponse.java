@@ -1,4 +1,4 @@
-package com.learning.spring_rest_demo.rest.errorResponse;
+package com.learning.spring_rest_demo.rest.exceptionAndError;
 
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
