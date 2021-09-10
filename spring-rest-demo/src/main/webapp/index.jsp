@@ -19,10 +19,10 @@
 		
 		<hr>
 		
-		<a href="teacher/getTeachers">Teachers List</a>
+		<a href="api/teachers">Teachers List</a>
 		
 		<hr>
 		
-		<a href="teachers/getTeacher/1002">Teacher</a>
+		<a href="api/teachers/1002">Teacher</a>
 	</body>
 </html>

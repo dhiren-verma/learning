@@ -16,18 +16,18 @@ import com.learning.spring_rest_demo.rest.exceptionAndError.TeacherNotFoundExcep
 import com.learning.spring_rest_demo.service.TeacherService;
 
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/api")
 public class TeacherRestController {
 	
 	@Autowired
 	TeacherService teacherService;
 	
-	@GetMapping("/getTeachers")
+	@GetMapping("/teachers")
 	public List<Teacher> getAllTeachers() {
 		return teacherService.getAllTeachers();
 	}
 	
-	@GetMapping("/getTeacher/{id}")
+	@GetMapping("/teachers/{id}")
 	public Teacher getTeacher(@PathVariable int id) {
 		try {
 			return teacherService.getTeacher(id);
@@ -36,7 +36,7 @@ public class TeacherRestController {
 		}
 	}
 	
-	@PutMapping("/updateTeacher/{id}/{name}")
+	@PutMapping("/teacher/{id}/{name}")
 	public Teacher updateTeacher(@PathVariable int id,
 			@PathVariable("name") String updatedName) {
 		try {
