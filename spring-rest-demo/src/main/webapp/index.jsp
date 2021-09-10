@@ -16,5 +16,13 @@
 		<hr>
 		
 		<a href="api/student/0">Student</a>
+		
+		<hr>
+		
+		<a href="teacher/getTeachers">Teachers List</a>
+		
+		<hr>
+		
+		<a href="teachers/getTeacher/1002">Teacher</a>
 	</body>
 </html>

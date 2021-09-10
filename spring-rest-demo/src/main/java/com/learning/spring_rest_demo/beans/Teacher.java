@@ -1,4 +1,4 @@
-package com.learning.spring_rest_demo.student;
+package com.learning.spring_rest_demo.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Student {
+public class Teacher {
 	
-	private String firstName;
-	private String lastName;
+	private int id;
+	
+	private String name;
 	
 }

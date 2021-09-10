@@ -19,4 +19,8 @@ public class StudentNotFoundException extends RuntimeException {
 		super(cause);
 	}
 	
+	public StudentNotFoundException() {
+		super();
+	}
+	
 }
