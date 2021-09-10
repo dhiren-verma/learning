@@ -15,7 +15,7 @@
 		
 		<hr>
 		
-		<a href="api/student/0">Student</a>
+		<a href="api/students/0">Student</a>
 		
 		<hr>
 		
