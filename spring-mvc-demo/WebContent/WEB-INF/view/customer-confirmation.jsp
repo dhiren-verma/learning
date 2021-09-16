@@ -17,6 +17,6 @@
 		
 		<br>
 		
-		& Course Code is: ${cust.courseCode}
+		and Course Code is: ${cust.courseCode}
 	</body>
 </html>
