@@ -15,6 +15,7 @@
 		<project-lombok.version>1.18.20</project-lombok.version>
 		<mysql.connector.version>8.0.25</mysql.connector.version>
 		<springframework.version>5.3.8</springframework.version>
+		<springsecurity.version>5.5.1</springsecurity.version>
 		<hibernate.version>5.5.2.Final</hibernate.version>
 		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
 		<jackson.core.version>2.12.4</jackson.core.version>
@@ -49,7 +50,19 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-		 
+		
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		
 		<!-- Add Jackson for JSON Data Conversion: -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -73,15 +86,6 @@
 			<version>${jsp.version}</version>
 		</dependency>
 		
-		<!-- Add JSP JSTL Support: -->
-		<!-- Not required: 
-		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>${jsp.version}</version>
-		</dependency>
-		 -->
-		 
 		<!-- Add MysqlConnector for DB Coneection: -->
 		<dependency>
 			<groupId>mysql</groupId>
