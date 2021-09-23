@@ -12,7 +12,7 @@ import com.learning.webCustomerTracker_AllJavaConfig.entity.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
-
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
