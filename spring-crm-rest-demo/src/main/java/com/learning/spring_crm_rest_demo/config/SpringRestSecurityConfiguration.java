@@ -35,13 +35,13 @@ public class SpringRestSecurityConfiguration extends WebSecurityConfigurerAdapte
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/api/customers").hasRole("EMPLOYEE")
-			.antMatchers(HttpMethod.GET, "/api/customers/**").hasRole("EMPLOYEE")
+			.antMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.POST, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
 			.antMatchers(HttpMethod.POST, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/customers").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/customers/**").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
 			.and()
 			.httpBasic()
 			.and()
