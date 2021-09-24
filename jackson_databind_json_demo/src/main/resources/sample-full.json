@@ -2,6 +2,7 @@
 	"id": 14,
 	"firstName": "Julia",
 	"lastName": "Myers",
+	"birthDate": "03/19/1990",
 	"active": true,
 	"address": {
 		"street": "100 Main St.",
