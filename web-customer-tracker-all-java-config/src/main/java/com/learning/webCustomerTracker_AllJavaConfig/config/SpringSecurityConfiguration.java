@@ -31,9 +31,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/customer/deleteCustomer/**")
 					.hasRole("ADMIN")
-				.antMatchers("/customer/addCustomerForm/**", "/customer/addCustomer/**", "/customer/updateCustomerForm/**", "/customer/updateCustomer/**")
+				.antMatchers("/customer/addCustomerForm/**",
+						"/customer/addCustomer/**",
+						"/customer/updateCustomerForm/**",
+						"/customer/updateCustomer/**")
 					.hasAnyRole("MANAGER", "ADMIN")
-				.antMatchers("/customer/listCustomers/**", "/customer/searchCustomer/**")
+				.antMatchers("/customer/listCustomers/**",
+						"/customer/searchCustomer/**")
 					.hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
 				.antMatchers("/").permitAll()
 			.and()
@@ -59,78 +63,5 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		return userDetailsManager;
 	}
-	
-//	@Configuration
-//	@Order(1)
-//	public static class WebAppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
-//		
-//		Logger logger = Logger.getLogger(getClass().getName());
-//		
-//		@Override
-//		protected void configure(HttpSecurity http) throws Exception {
-//			//Max Restrictive at the Top
-//			//Least Restrictive at the Bottom
-//			http.authorizeRequests()
-//					.antMatchers("/customer/deleteCustomer/**")
-//						.hasRole("ADMIN")
-//					.antMatchers("/customer/addCustomerForm/**", "/customer/addCustomer/**", "/customer/updateCustomerForm/**", "/customer/updateCustomer/**")
-//						.hasAnyRole("MANAGER", "ADMIN")
-//					.antMatchers("/customer/listCustomers/**", "/customer/searchCustomer/**")
-//						.hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
-//					.antMatchers("/").permitAll()
-//				.and()
-//					.formLogin()
-//						.loginPage("/showLoginPage")
-//						.loginProcessingUrl("/authenticateUser")
-//						.permitAll()
-//				.and()
-//					.logout()
-//					.permitAll()
-//				.and()
-//					.exceptionHandling()
-//					.accessDeniedPage("/access-denied");
-//			
-//			logger.info("WebAppSecurityConfigurerAdapter successfully loaded");
-//		}
-//		
-//	}
-//	
-//	@Configuration
-//	@Order(2)
-//	public static class RestApiSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-//		
-//		Logger logger = Logger.getLogger(getClass().getName());
-//		
-//		@Override
-//		protected void configure(HttpSecurity http) throws Exception {
-//			//Max Restrictive at the Top
-//			//Least Restrictive at the Bottom
-//			http.authorizeRequests()
-//					.antMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
-//					.antMatchers(HttpMethod.POST, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
-//					.antMatchers(HttpMethod.POST, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
-//					.antMatchers(HttpMethod.PUT, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
-//					.antMatchers(HttpMethod.PUT, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
-//					.antMatchers(HttpMethod.GET, "/api/customers").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
-//					.antMatchers(HttpMethod.GET, "/api/customers/**").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
-//				.and()
-//					.httpBasic().authenticationEntryPoint(authenticationEntryPoint())
-//				.and()
-//					.csrf().disable()
-//					.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//			
-//			logger.info("RestApiSecurityConfigurationAdapter successfully loaded");
-//		}
-//		
-//		@Bean
-//		public AuthenticationEntryPoint authenticationEntryPoint() {
-//			BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
-//			
-//			entryPoint.setRealmName("api realm");
-//			
-//			return entryPoint;
-//		}
-//		
-//	}
 	
 }
