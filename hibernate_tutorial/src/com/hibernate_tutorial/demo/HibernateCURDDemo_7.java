@@ -52,7 +52,7 @@ public class HibernateCURDDemo_7 {
 			
 			//Retrieve Employee from a particular Company:
 			String companyName = "Qualcomm";
-			List<Employee> companyEmps = session.createQuery("from Employee e WHERE e.company='"+companyName+"'").getResultList();
+			List<Employee> companyEmps = session.createQuery("from Employee e WHERE e.company='"+companyName+"'", Employee.class).getResultList();
 			
 			session.getTransaction().commit();
 			

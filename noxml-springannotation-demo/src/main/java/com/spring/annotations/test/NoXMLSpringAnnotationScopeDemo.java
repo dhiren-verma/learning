@@ -2,7 +2,6 @@ package com.spring.annotations.test;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.spring.annotations.beans.BasketballCoach;
 import com.spring.annotations.interfaces.Coach;
 import com.spring.annotations.springConfig.SpringConfiguration;
 

@@ -26,26 +26,26 @@ public class QueryHibernateDemo_4 {
 			List<Student> students;
 			
 			//Query to get all Records from Table:
-			students = session.createQuery("from Student").getResultList();
+			students = session.createQuery("from Student", Student.class).getResultList();
 			
 			//Print the Result:
 			System.out.println("Students retrieved from DB are:\n");
 			students.stream().forEach(student -> System.out.println(student));
 			
 			//Query Objects based on WHERE Clause:
-			students = session.createQuery("from Student s where s.lastName='Tyagi'").getResultList();
+			students = session.createQuery("from Student s where s.lastName='Tyagi'", Student.class).getResultList();
 			
 			System.out.println("Students retrieved using WHERE Clause:\n");
 			students.stream().forEach(student -> System.out.println(student));
 			
 			//Query Objects based on OR Predicate:
-			students = session.createQuery("from Student s where s.lastName='Tyagi' OR s.firstName='Sachin'").getResultList();
+			students = session.createQuery("from Student s where s.lastName='Tyagi' OR s.firstName='Sachin'", Student.class).getResultList();
 			
 			System.out.println("Students retrieved using OR Predicate with WHERE Clause:\n");
 			students.stream().forEach(student -> System.out.println(student));
 			
 			//Query Objects based on LIKE Predicate:
-			students = session.createQuery("from Student s WHERE s.email LIKE '%test.com'").getResultList();
+			students = session.createQuery("from Student s WHERE s.email LIKE '%test.com'", Student.class).getResultList();
 			
 			System.out.println("Students retrieved using LIKE Predicate with WHERE Clause:\n");
 			students.stream().forEach(student -> System.out.println(student));
