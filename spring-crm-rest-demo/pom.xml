@@ -12,6 +12,7 @@
 	<name>spring-crm-rest-demo</name>
 	
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project-lombok.version>1.18.20</project-lombok.version>
 		<mysql.connector.version>8.0.25</mysql.connector.version>
 		<springframework.version>5.3.8</springframework.version>

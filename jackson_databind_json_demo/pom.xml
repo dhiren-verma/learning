@@ -10,6 +10,7 @@
 	<name>Jackson Databind JSON Demo</name>
 	
   	<properties>
+  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   		<project-lombok.version>1.18.22</project-lombok.version>
   		<jackson-core.version>2.12.4</jackson-core.version>
 	</properties>

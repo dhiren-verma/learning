@@ -12,6 +12,7 @@
 	<name>spring-rest-demo</name>
 	
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project-lombok.version>1.18.20</project-lombok.version>
 		<spring.webmvc.version>5.3.8</spring.webmvc.version>
 		<jackson.core.version>2.12.4</jackson.core.version>
