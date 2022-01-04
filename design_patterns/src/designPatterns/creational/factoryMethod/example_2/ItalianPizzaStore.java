@@ -1,14 +1,20 @@
 package designPatterns.creational.factoryMethod.example_2;
 
+/**
+ * Represents Concrete Creator:
+ * Covers Parameterized Factory Method
+ * 
+ * @author Dhirendra Verma
+ */
 public class ItalianPizzaStore extends PizzaStore {
 	
 	@Override
-	protected Pizza createPizza(String type) {
+	protected Pizza createPizza(PizzaType type) {
 		Pizza pizza = null;
 		
-		if (type.equalsIgnoreCase("pepperoni"))
+		if (type==PizzaType.PEPPERONI)
 			pizza = new ItalianStylePepperoniPizza();
-		else if (type.equalsIgnoreCase("cheese"))
+		else if (type==PizzaType.CHEESE)
 			pizza = new ItalianStyleCheesePizza();
 		
 		return pizza;

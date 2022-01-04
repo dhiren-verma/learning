@@ -1,8 +1,14 @@
 package designPatterns.creational.factoryMethod.example_2;
 
+/**
+ * Represents Creator/Abstract Creator:
+ * Covers Parameterized Factory Method
+ * 
+ * @author Dhirendra Verma
+ */
 public abstract class PizzaStore {
 	
-	public Pizza orderPizza(String type) {
+	public Pizza orderPizza(PizzaType type) {
 		Pizza pizza = createPizza(type);
 		
 		pizza.prepare();
@@ -13,6 +19,6 @@ public abstract class PizzaStore {
 		return pizza;
 	}
 	
-	protected abstract Pizza createPizza(String type);
+	protected abstract Pizza createPizza(PizzaType type);
 	
 }

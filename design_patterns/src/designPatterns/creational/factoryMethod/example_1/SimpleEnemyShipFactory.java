@@ -11,7 +11,9 @@ package designPatterns.creational.factoryMethod.example_1;
  * of that new Type of Product, which is against Open-Closed Design Principle of
  * Object Oriented Programming.  
  * But if in case we delegate EnemyShip Instantiation to Subclasses, then a new
- * Factory Method Subclass can be used to instantiate new Type of Product. 
+ * Factory Method Subclass can be used to instantiate new Type of Product.
+ * 
+ * @author Dhirendra Verma
  */
 public class SimpleEnemyShipFactory {
 	

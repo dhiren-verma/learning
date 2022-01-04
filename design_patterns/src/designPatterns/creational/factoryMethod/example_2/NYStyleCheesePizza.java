@@ -1,5 +1,10 @@
 package designPatterns.creational.factoryMethod.example_2;
 
+/**
+ * Represents Concrete Product:
+ * 
+ * @author Dhirendra Verma
+ */
 public class NYStyleCheesePizza extends Pizza {
 	
 	@Override

@@ -1,5 +1,10 @@
 package designPatterns.creational.factoryMethod.example_1;
 
+/**
+ * Represents Product/Abstract Product:
+ * 
+ * @author Dhirendra Verma
+ */
 public abstract class EnemyShip {
 	
 	private String name;
