@@ -1,7 +1,8 @@
 package designPatterns.creational.builder;
 
 /**
- * This Class represents the Director in the Builder Design Pattern
+ * This Class represents the Director in the Builder
+ * Design Pattern
  * 
  * @author Dhirendra Verma
  * 

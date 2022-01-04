@@ -1,7 +1,8 @@
 package designPatterns.creational.builder;
 
 /**
- * This Interface represents the Builder Interface in the Builder Design Pattern
+ * This Interface represents the Builder Interface in
+ * the Builder Design Pattern
  * 
  * @author Dhirendra Verma
  * 

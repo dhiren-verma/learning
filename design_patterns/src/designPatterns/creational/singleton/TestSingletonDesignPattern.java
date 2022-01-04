@@ -23,9 +23,9 @@ public class TestSingletonDesignPattern {
 		checkSingleton(eagerInstance, secondEagerInstance, "EagerInitializedSingleton");
 		
 		EagerInitializedSingleton reflectionEagerInstance = null;
-		Constructor[] constructors = EagerInitializedSingleton.class.getDeclaredConstructors();
+		Constructor<?>[] constructors = EagerInitializedSingleton.class.getDeclaredConstructors();
 		
-		for (Constructor constructor : constructors) {
+		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
 			reflectionEagerInstance = (EagerInitializedSingleton) constructor.newInstance();
 			break;
@@ -44,7 +44,7 @@ public class TestSingletonDesignPattern {
 		StaticBlockSingleton reflectionStaticBlockInstance = null;
 		constructors = StaticBlockSingleton.class.getDeclaredConstructors();
 		
-		for (Constructor constructor : constructors) {
+		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
 			reflectionStaticBlockInstance = (StaticBlockSingleton) constructor.newInstance();
 			break;
@@ -63,7 +63,7 @@ public class TestSingletonDesignPattern {
 		LazyInitializedSingleton reflectionLazyInstance = null;
 		constructors = LazyInitializedSingleton.class.getDeclaredConstructors();
 		
-		for (Constructor constructor : constructors) {
+		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
 			reflectionLazyInstance = (LazyInitializedSingleton) constructor.newInstance();
 			break;
@@ -82,7 +82,7 @@ public class TestSingletonDesignPattern {
 		ThreadSafeSingleton reflectionThreadSafeInstance = null;
 		constructors = ThreadSafeSingleton.class.getDeclaredConstructors();
 		
-		for (Constructor constructor : constructors) {
+		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
 			reflectionThreadSafeInstance = (ThreadSafeSingleton) constructor.newInstance();
 			break;
@@ -101,7 +101,7 @@ public class TestSingletonDesignPattern {
 		DoubleCheckLockingSingleton reflectionDoubleCheckLockInstance = null;
 		constructors = DoubleCheckLockingSingleton.class.getDeclaredConstructors();
 		
-		for (Constructor constructor : constructors) {
+		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
 			reflectionDoubleCheckLockInstance = (DoubleCheckLockingSingleton) constructor.newInstance();
 			break;
@@ -120,7 +120,7 @@ public class TestSingletonDesignPattern {
 		BillPughSingleton reflectionBillPughInstance = null;
 		constructors = BillPughSingleton.class.getDeclaredConstructors();
 		
-		for (Constructor constructor : constructors) {
+		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
 			reflectionBillPughInstance = (BillPughSingleton) constructor.newInstance();
 			break;
@@ -134,7 +134,7 @@ public class TestSingletonDesignPattern {
 		
 		//How to safeguard from Reflection:
 		//1. Run your application using a SecurityManager & a sufficiently restrictive Security Policy.
-		//2. In the Constructor check if its being accessed using some other Class, if so throw an Exception.
+		//2. In the Constructor check if its being accessed using Reflection manipulation, if so throw an Exception.
 		
 		//How to safeguard from Cloning & Serialization & De-serialization:
 		//1. To prevent against Cloning just Override the clone() method & throw a
@@ -150,7 +150,7 @@ public class TestSingletonDesignPattern {
 		constructors = PerfectSingleton.class.getDeclaredConstructors();
 		
 		try {
-			for (Constructor constructor : constructors) {
+			for (Constructor<?> constructor : constructors) {
 				constructor.setAccessible(true);
 				reflectionInstance = (PerfectSingleton) constructor.newInstance();
 				break;
@@ -177,6 +177,7 @@ public class TestSingletonDesignPattern {
 		in.close();
 		
 		checkSerializedSingletonIntegrity(perfectInstance, deserializedInstance);
+		
 	}
 	
 	private static void checkSingleton(Object firstInstance, Object secondInstance,

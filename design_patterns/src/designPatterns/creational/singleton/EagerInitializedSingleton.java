@@ -24,7 +24,8 @@ package designPatterns.creational.singleton;
  */
 public class EagerInitializedSingleton {
 	
-	private static final EagerInitializedSingleton instance = new EagerInitializedSingleton();
+	private static final EagerInitializedSingleton instance =
+			new EagerInitializedSingleton();
 	
 	private EagerInitializedSingleton() {}
 	

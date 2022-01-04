@@ -1,13 +1,16 @@
 package designPatterns.creational.singleton;
 
+import java.io.FileNotFoundException;
+
 /**
- * Fourht Singleton Example:
+ * Fourth Singleton Example:
+ * 
  * Pros:	Creates instance when the request comes for the first time.
  * 			Also as the Method itself is synchronized therefore its considered
- * 			to be Multi-Treading Safe.
+ * 			to be Multi-Threading Safe.
  * 
  * Cons:	1. It reduces the performance because of the cost associated with
- * 			Synchronized method, as everytime we request for its Instance,
+ * 			Synchronized method, as every-time we request for its Instance,
  * 			whereas all we wanted to do was to prevent multiple Instances of
  * 			Singleton to be initialized in case of Multi-Threaded Environment.
  * 			2. Also if Module is publicly accessible, then Reflection can
@@ -21,7 +24,7 @@ package designPatterns.creational.singleton;
  * 			threads try to get the Instance of the Singleton Class simultaneously. 
  * 
  * Use Case:Use only in case this will be used in a Multi-Threaded
- * 			Environment only, but still not recommended
+ * 			Environment, but still not recommended
  * 
  * @author Dhirendra Verma
  *

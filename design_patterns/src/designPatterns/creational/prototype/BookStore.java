@@ -3,12 +3,12 @@ package designPatterns.creational.prototype;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookShop implements Cloneable{
+public class BookStore implements Store{
 	
 	private String bookShopName;
 	private List<Book> books;
 	
-	public BookShop() {
+	public BookStore() {
 		books = new ArrayList<>();
 	}
 	
@@ -30,12 +30,12 @@ public class BookShop implements Cloneable{
 	}
 	
 	@Override
-	protected BookShop clone() throws CloneNotSupportedException {
+	public BookStore clone() throws CloneNotSupportedException {
 //		//Shallow Cloning:
-//		return (BookShop)super.clone();
+//		return (BookStore)super.clone();
 		
 		//Deep Cloning:
-		BookShop clonedShop = new BookShop();
+		BookStore clonedShop = new BookStore();
 		
 		clonedShop.getBooks().addAll(getBooks());
 		

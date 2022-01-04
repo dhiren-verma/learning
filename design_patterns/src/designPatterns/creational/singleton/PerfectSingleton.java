@@ -42,7 +42,7 @@ public class PerfectSingleton implements Cloneable, Serializable {
 	
 	@Override
 	protected PerfectSingleton clone() throws CloneNotSupportedException {
-		throw new CloneNotSupportedException("PerfectSinglton cann't be Cloned");
+		throw new CloneNotSupportedException("PerfectSinglton can't be Cloned");
 	}
 	
 	protected Object readResolve() {

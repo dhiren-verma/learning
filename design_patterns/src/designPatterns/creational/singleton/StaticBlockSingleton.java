@@ -5,7 +5,7 @@ package designPatterns.creational.singleton;
  * It is similar to Eager Initialization Singleton Implementation,
  * just that using a Static block provides the option for Exception
  * Handling, in case something goes wrong while Initializing the
- * Instance if this Class.
+ * Instance of this Class.
  * 
  * Pros:	Provides for Exception Handling, in case something happens
  * 			during Instantiation of this Class. Exception can either be handled

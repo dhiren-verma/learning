@@ -1,11 +1,10 @@
 package designPatterns.creational.builder;
 
 /**
- * This Interface is just a convenience Interface for our Robot,
- * its doesn't map to anything mentioned by the Builder Design Pattern
+ * Doesn't represent anything specific in Builder Design Pattern.
+ * Just a convenience Interface for Robot
  * 
  * @author Dhirendra Verma
- * 
  */
 public interface RobotPlan {
 	

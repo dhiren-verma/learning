@@ -3,7 +3,7 @@ package designPatterns.creational.singleton;
  * Fifth Singleton Example:
  * 
  * Pros:	Lazy Initialized Singleton and Synchronized Block is used inside
- * 			the if condition with an additional check to ensure that only one
+ * 			if condition with an additional check to ensure that only one
  * 			instance of Singleton Class is created.
  * 
  * Cons:	1. Very minute Synchronization Performance issue due to one time

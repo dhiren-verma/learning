@@ -1,7 +1,8 @@
 package designPatterns.creational.builder;
 
 /**
- * This Class represents the Product that is to be Build using the Builder Design Pattern
+ * This Class represents the Product that is to be built
+ * using the Builder Design Pattern
  * 
  * @author Dhirendra Verma
  * 
