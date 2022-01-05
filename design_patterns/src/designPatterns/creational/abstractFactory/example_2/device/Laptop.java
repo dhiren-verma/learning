@@ -1,6 +1,5 @@
 package designPatterns.creational.abstractFactory.example_2.device;
 
-
 import designPatterns.creational.abstractFactory.example_2.device.component.cpu.CPUBrand;
 import designPatterns.creational.abstractFactory.example_2.device.component.gpu.GPUBrand;
 import designPatterns.creational.abstractFactory.example_2.device.component.ram.RAMBrand;

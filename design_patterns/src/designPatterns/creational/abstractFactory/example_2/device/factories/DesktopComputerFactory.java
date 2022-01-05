@@ -8,20 +8,33 @@ import designPatterns.creational.abstractFactory.example_2.device.componentstora
 
 public class DesktopComputerFactory implements ComputerFactory {
 
+	private DesktopComputerFactory() {}
+	
+	private static class SingletonHelperClass {
+		private static final DesktopComputerFactory INSTANCE =
+				new DesktopComputerFactory();
+	}
+	
+	public static DesktopComputerFactory getInstance() {
+		return SingletonHelperClass.INSTANCE;
+	} 
+	
 	@Override
 	public Desktop buildComputer(ManufacturerType manufacturerType) {
 		Desktop desktopComputer = null;
 		
-		ComponentFactory componentFactory = new DesktopComponentFactory();
+		ComponentFactory componentFactory = DesktopComponentFactory.getInstance();
 		
 		switch (manufacturerType) {
 			case CyberPower:
 				 desktopComputer = new Desktop("CyberPower Desktop", componentFactory);
-				 desktopComputer.assembleComputer(CPUBrand.AMD, RAMBrand.Crucial, GPUBrand.Radeon, StorageBrand.Crucial);
+				 desktopComputer.assembleComputer(CPUBrand.AMD, RAMBrand.Crucial,
+						 GPUBrand.Radeon, StorageBrand.Crucial);
 				break;
 			case Dell:
 				desktopComputer = new Desktop("Dell Desktop", componentFactory);
-				desktopComputer.assembleComputer(CPUBrand.Intel, RAMBrand.HyperX, GPUBrand.Nvidia, StorageBrand.Samsung);
+				desktopComputer.assembleComputer(CPUBrand.Intel, RAMBrand.HyperX,
+						GPUBrand.Nvidia, StorageBrand.Samsung);
 				break;
 			default:	//Do nothing as we don't have Generic Desktop Computer.
 		}

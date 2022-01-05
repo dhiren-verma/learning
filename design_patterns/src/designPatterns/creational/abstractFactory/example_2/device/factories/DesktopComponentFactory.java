@@ -15,6 +15,17 @@ import designPatterns.creational.abstractFactory.example_2.device.component.ram.
 
 public class DesktopComponentFactory implements ComponentFactory {
 
+	private DesktopComponentFactory() {}
+	
+	private static class SingletonHelperClass {
+		private static final DesktopComponentFactory INSTANCE =
+				new DesktopComponentFactory();
+	}
+	
+	public static DesktopComponentFactory getInstance() {
+		return SingletonHelperClass.INSTANCE;
+	}
+	
 	@Override
 	public CPU getCPU(CPUBrand brand) {
 		CPU cpu = null;

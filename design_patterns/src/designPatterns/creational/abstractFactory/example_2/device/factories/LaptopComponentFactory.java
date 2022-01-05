@@ -15,6 +15,17 @@ import designPatterns.creational.abstractFactory.example_2.device.component.ram.
 
 public class LaptopComponentFactory implements ComponentFactory {
 
+	private LaptopComponentFactory() {}
+	
+	private static class SingletonHelperClass {
+		private static final LaptopComponentFactory INSTANCE =
+				new LaptopComponentFactory();
+	}
+	
+	public static LaptopComponentFactory getInstance() {
+		return SingletonHelperClass.INSTANCE;
+	}
+	
 	@Override
 	public CPU getCPU(CPUBrand brand) {
 		CPU cpu = null;

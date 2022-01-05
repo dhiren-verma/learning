@@ -22,7 +22,7 @@ public abstract class RAM {
 	public String getName() {
 		return name;
 	}
-
+	
 	public String getFrequency() {
 		return frequency;
 	}

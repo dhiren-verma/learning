@@ -21,6 +21,17 @@ import designPatterns.creational.abstractFactory.example_1.ship.weapon.ESWeapon;
  */
 public class UFOEnemyShipFactory implements EnemyShipFactory {
 
+	private UFOEnemyShipFactory() {}
+	
+	private static class SingletonHelperClass {
+		private static final UFOEnemyShipFactory INSTANCE =
+				new UFOEnemyShipFactory();
+	}
+	
+	public static UFOEnemyShipFactory getInstance() {
+		return SingletonHelperClass.INSTANCE;
+	}
+	
 	// Defines the weapon object to associate with the ship
 	@Override
 	public ESWeapon addESWeapon() {

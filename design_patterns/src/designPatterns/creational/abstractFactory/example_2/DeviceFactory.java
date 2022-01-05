@@ -4,17 +4,27 @@ import designPatterns.creational.abstractFactory.example_2.device.factories.Comp
 import designPatterns.creational.abstractFactory.example_2.device.factories.DesktopComputerFactory;
 import designPatterns.creational.abstractFactory.example_2.device.factories.LaptopComputerFactory;
 
-public class AbstractDeviceFactory {
-
+public class DeviceFactory {
+	
+	private DeviceFactory(){}
+	
+	private static class SingletonHelperClass {
+		private static final DeviceFactory INSTANCE = new DeviceFactory();
+	}
+	
+	public static DeviceFactory getInstance() {
+		return SingletonHelperClass.INSTANCE;
+	}
+	
 	public ComputerFactory getComputerFactory(ComputerType deviceType) {
 		ComputerFactory factory = null;
 		
 		switch(deviceType) {
 			case Desktop:
-				factory = new DesktopComputerFactory();
+				factory = DesktopComputerFactory.getInstance();
 				break;
 			case Laptop:
-				factory = new LaptopComputerFactory();
+				factory = LaptopComputerFactory.getInstance();
 				break;
 		}
 		

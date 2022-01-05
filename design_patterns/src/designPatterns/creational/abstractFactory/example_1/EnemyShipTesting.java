@@ -8,7 +8,7 @@ public class EnemyShipTesting {
 		// EnemyShipBuilding handles orders for new EnemyShips
         // You send it a code using the orderTheShip method &
         // it sends the order to the right factory for creation
-		EnemyShipBuilding makeUFO = new UFOEnemyShipBuilding();
+		EnemyShipBuilding makeUFO = UFOEnemyShipBuilding.getInstance();
 		
 		EnemyShip theGrunt = makeUFO.orderTheShip(EnemyShipType.UFO);
 		System.out.println(theGrunt);

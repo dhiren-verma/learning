@@ -11,27 +11,33 @@ public class RetailerShop {
 	//Computer or a LAptop Computer, also he knows what Brand he wants & these are the only Details
 	//collected from Client:
 	public static void main(String[] args) {
-		ComputerFactory desktopFactory = new AbstractDeviceFactory().getComputerFactory(ComputerType.Desktop);
+		ComputerFactory desktopFactory = DeviceFactory.getInstance().
+				getComputerFactory(ComputerType.Desktop);
 		
-		Computer firstClientComputer = desktopFactory.orderComputer(ManufacturerType.CyberPower);
+		Computer firstClientComputer = desktopFactory.
+				orderComputer(ManufacturerType.CyberPower);
 		
 		System.out.println("First Client's Computer:");
 		printSystemSpecs(firstClientComputer);
 		
-		Computer secondClientComputer = desktopFactory.orderComputer(ManufacturerType.Dell);
+		Computer secondClientComputer = desktopFactory.
+				orderComputer(ManufacturerType.Dell);
 		
 		System.out.println("\n\nSecond Client's Computer:");
 		printSystemSpecs(secondClientComputer);
 		
 		
-		ComputerFactory laptopFactory = new AbstractDeviceFactory().getComputerFactory(ComputerType.Laptop);
+		ComputerFactory laptopFactory = DeviceFactory.getInstance().
+				getComputerFactory(ComputerType.Laptop);
 		
-		Computer thirdClientComputer = laptopFactory.orderComputer(ManufacturerType.Asus);
+		Computer thirdClientComputer = laptopFactory.
+				orderComputer(ManufacturerType.Asus);
 		
 		System.out.println("\n\nThird Client's Computer:");
 		printSystemSpecs(thirdClientComputer);
 		
-		Computer fourthClientComputer = laptopFactory.orderComputer(ManufacturerType.MSI);
+		Computer fourthClientComputer = laptopFactory.
+				orderComputer(ManufacturerType.MSI);
 		
 		System.out.println("\n\nFourth Client's Computer:");
 		printSystemSpecs(fourthClientComputer);

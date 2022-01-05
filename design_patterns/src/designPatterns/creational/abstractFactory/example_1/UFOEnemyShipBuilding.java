@@ -12,6 +12,17 @@ import designPatterns.creational.abstractFactory.example_1.ship.factories.UFOEne
 // provide as an option to build
 public class UFOEnemyShipBuilding extends EnemyShipBuilding {
 
+	private UFOEnemyShipBuilding() {}
+	
+	private static class SingletonHelperClass {
+		private static final UFOEnemyShipBuilding INSTANCE =
+				new UFOEnemyShipBuilding();
+	}
+	
+	public static UFOEnemyShipBuilding getInstance() {
+		return SingletonHelperClass.INSTANCE;
+	}
+	
 	@Override
 	protected EnemyShip makeEnemyShip(EnemyShipType typeOfShip) {
 		EnemyShip theEnemyShip = null;
@@ -20,7 +31,7 @@ public class UFOEnemyShipBuilding extends EnemyShipBuilding {
 		//types of weapons and engines a regular UFO needs.
 		//The EnemyShip object is returned & given a name:
 		if (typeOfShip==EnemyShipType.UFO) {
-			EnemyShipFactory shipPartsFactory = new UFOEnemyShipFactory();
+			EnemyShipFactory shipPartsFactory = UFOEnemyShipFactory.getInstance();
 			theEnemyShip = new UFOEnemyShip(shipPartsFactory);
 			theEnemyShip.setName("UFO Grunt Ship");
 		} else
@@ -28,7 +39,7 @@ public class UFOEnemyShipBuilding extends EnemyShipBuilding {
         // what types of weapons and engines a Boss UFO needs.
 		//The EnemyShip object is returned & given a name:
 		if (typeOfShip==EnemyShipType.BOSS_UFO) {
-			EnemyShipFactory shipPartsFactory = new BossUFOEnemyShipFactory();
+			EnemyShipFactory shipPartsFactory = BossUFOEnemyShipFactory.getInstance();
 			theEnemyShip = new BossUFOEnemyShip(shipPartsFactory);
 			theEnemyShip.setName("UFO BOSS Ship");
 		}
