@@ -1,5 +1,7 @@
 package designPatterns.creational.abstractFactory.example_1;
 
+import designPatterns.creational.abstractFactory.example_1.ship.EnemyShip;
+
 public class EnemyShipTesting {
 
 	public static void main(String[] args) {
@@ -8,10 +10,10 @@ public class EnemyShipTesting {
         // it sends the order to the right factory for creation
 		EnemyShipBuilding makeUFO = new UFOEnemyShipBuilding();
 		
-		EnemyShip theGrunt = makeUFO.orderTheShip("UFO");
+		EnemyShip theGrunt = makeUFO.orderTheShip(EnemyShipType.UFO);
 		System.out.println(theGrunt);
 		
-		EnemyShip theBoss = makeUFO.orderTheShip("BOSS UFO");
+		EnemyShip theBoss = makeUFO.orderTheShip(EnemyShipType.BOSS_UFO);
 		System.out.println(theBoss);
 	}
 

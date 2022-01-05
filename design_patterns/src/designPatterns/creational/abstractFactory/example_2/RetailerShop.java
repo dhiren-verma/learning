@@ -1,5 +1,9 @@
 package designPatterns.creational.abstractFactory.example_2;
 
+import designPatterns.creational.abstractFactory.example_2.device.Computer;
+import designPatterns.creational.abstractFactory.example_2.device.factories.ComputerFactory;
+import designPatterns.creational.abstractFactory.example_2.device.factories.ManufacturerType;
+
 public class RetailerShop {
 
 	//System inside is most abstracted from Client & he's only exposed to details that he must know,
