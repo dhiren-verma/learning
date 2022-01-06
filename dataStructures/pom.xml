@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.learning</groupId>
-	<artifactId>dataStructures</artifactId>
+	<artifactId>data_structures</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<name>DataStructures-Tutorial</name>
