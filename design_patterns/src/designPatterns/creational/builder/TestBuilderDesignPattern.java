@@ -4,10 +4,13 @@ public class TestBuilderDesignPattern {
 	
 	public static void main(String[] args) {
 		//Builder
-		RobotBuilder oldRobotBuilder = new OldRobotBuilder();
+//		RobotBuilder robotBuilder = new OldRobotBuilder();
+		
+		//other Builder:
+		RobotBuilder robotBuilder = new ModernRobotBuilder();
 		
 		//Director
-		RobotEngineer robotEngineer = new RobotEngineer(oldRobotBuilder);
+		RobotEngineer robotEngineer = new RobotEngineer(robotBuilder);
 		
 		robotEngineer.makeRobot();
 		
