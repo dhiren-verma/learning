@@ -1,0 +1,148 @@
+Linked Lists: Singly Linked Lists & Double Linked Lists
+
+A Linked List is a sequential List of nodes that hold data which point to other
+nodes also containing data.
+Example:
+data -> data -> data -> null
+
+
+Uses of Linked List:
+	*	Used in many List, Queue & Stack implementations
+	*	Great for creating circular Linked Lists(Last Node points to First Node
+		rather than 'null')
+	*	Can easily model real world objects such as Trains
+	*	Used in separate chaining, which is present in certain HashTable
+		implementations to deal with hashing collisions.
+
+	3	->	84 ->	22	->	12	->	31	->	51
+	^			^			^				^
+	|			|			|				|
+  Head		 Pointer	   Node			   Tail
+  
+  	Head 	->	The First Node in a Linked List
+  	Tail 	->	The Last Node in a Linked List
+  	Pointer	->	Reference to another Node
+  	Node	->	An Object containing Data and pointer(s)/reference(s)
+
+Note:	We always maintain a Pointer to the Head of a Linked List
+  
+Types of Linked List:
+	1. Singly Linked List: Singly Linked List only hold a reference to the next
+	   node. In the implementations we always maintain a reference to the 'Head'
+	   of the Linked List & a reference to the 'Tail' for quick
+	   additions/removals. Example:
+		3	->	84 ->	22	->	12	->	31	->	51
+	   
+	2. Doubly Linked List: With a Doubly Linked List each node holds a reference
+	   to the next and previous node. In the implementations we always maintain
+	   a reference to the 'Head' and the 'Tail' of the Double Linked List to do
+	   quick additions/removals from both ends of our list. Example:
+		3  <-->  84  <-->  22  <-->  12  <-->  31  <-->  51
+
+Singly & Doubly Linked Lists - Pros & Cons:
+					 ___________________________________________________________
+					|	Pros:						|	Cons:					|
+					|_______________________________|___________________________|
+Singly Linked List	|	* Uses Less Memory			|	* Cannot easily access 	|
+					|	* Simpler implementation	|	  previous elements		|
+					|_______________________________|___________________________|
+					|	* Can be traversed backwards|	* Takes 2X Memory		|
+Doubly Linked List	|_______________________________|___________________________|
+
+
+Insertion in Singly Linked List:
+	5	->	23	->	7	->	13
+					^
+					|
+					11
+	
+	We need to insert '11' where 3rd Node is:
+	*	So we start with single traversal pointer from Head, reach 2nd Node(Node
+		just before the position where new Node is to be inserted).
+	*	We create a New Node which contains '11', & set its Next Pointer to '7'.
+	*	After this we link '11' to the start of the Linked List by setting '23'
+		Next Pointer to point to '11'.
+	*	Adding new Node in the Mid of a Singly Linked List is done.
+
+
+Insertion in Doubly Linked List:
+	5  <-->  23  <-->  7  <-->  13
+					   ^
+					   |
+					   11
+	
+	We need to insert '11' where 3rd Node is:
+	*	So we start with single traversal pointer from Head, reach 2nd Node(Node
+		just before the position where new Node is to inserted).
+	*	We create a new Node which contains '11', & set its Next Pointer to '7'.
+	*	We then set '11's Previous Pointer to '23'(which we have a handle on
+		because of Traversal Pointer).
+	*	Now we point '7's Previous Pointer to '11' & '23's Next Pointer to '11'.
+	*	Adding new Node in the mid of a Double Linked List is done.
+
+
+
+Deletion from Singly Linked List:
+	5	->	23	->	7	->	13
+					^
+					|
+				  Remove
+	
+	We need to remove '7' from the Singly Linked List:
+	Note:	Using two Traversal Pointers, just for simplicity, can also be done
+			with One.
+	*	So we take Two Traversal Pointer such that Pointer1 = Head &&
+		Pointer 2 = Pointer1.Next
+	*	Now we advance both Traversal Pointers until Pointer2 reaches the Node
+		that is to be removed.
+		At this point,
+		Pointer2 = Node to be Removed
+		Pointer1 = Previous Node of Node to be removed
+	*	Now Create a Temp Pointer, which points to the Node to be Removed,
+		pointed to by Pointer2, after holding Pointer2 value in Temp Pointer,
+		advance Pointer2 to next Node.
+		(Using Temp Pointer just to deallocate memory after deletion of Node).
+	*	Now set Pointer1.Next to point to Pointer2. It will be 23.Next = 13.
+	*	Now we can remove safely remove Node pointed to be Temp, which is the
+		Node to be removed.
+
+
+Deletion from Double Linked List:
+	5  <-->  23  <-->  7  <-->  13
+					   ^
+					   |
+					Remove
+	
+	We need to remove '7' from the Double Linked List:
+	Note:	Here as each Node points to Next & Previous, we can work with Single
+			Traversal Pointer easily.
+	*	So we start with single Traversal Pointer from Head, traverse to the
+		Node that is to be removed which is '7'.
+	*	Now set Previous of Traversal Pointer's Next to point to Traversal
+		Pointer's Previous, i.e. 13.Previous -> 23.
+	*	Then we set Next of Traversal Pointer's Previous to point to Traversal
+		Pointer's Next, i.e. 23.next -> 13.
+	*	Now we can safely remove Node pointed to be Traversal Pointer, which is
+		the Node to be removed.
+
+
+
+	Complexity Analysis:
+						 _______________________
+						|Singly		|Double		|
+						|Linked		|Linked		|
+						|List		|List		|
+	 ___________________|___________|___________|
+	|Search				|	O(n)	|	O(n)	|
+	|___________________|___________|___________|
+	|Insert at Head		|	O(1)	|	O(1)	|
+	|___________________|___________|___________|
+	|Insert at Tail		|	O(1)	|	O(1)	|
+	|___________________|___________|___________|
+	|Remove at Head		|	O(1)	|	O(1)	|
+	|___________________|___________|___________|
+	|Remove at Tail		|	O(n)	|	O(1)	|
+	|___________________|___________|___________|
+	|Remove in middle	|	O(n)	|	O(n)	|
+	|___________________|___________|___________|
+	

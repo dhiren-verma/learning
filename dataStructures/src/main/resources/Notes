@@ -1,0 +1,53 @@
+A DataStructure is a way of organizing Data so that it can be used effectively:
+
+Abstract Data Types:
+
+An Abstract Data Type is an abstraction of a Data Structure which provides only
+the interface to which a Data Structure must adhere to.
+It just explains how a Data Structure should behave & what methods it should have,
+but not how these methods should be implemented.
+The Interface doesn't give any specific details about how something should be
+implemented or in what Programming Language. Example:
+
+Abstraction(ADT):				Implementation(DS):
+List							Dynamic Array, Linked List
+Queue							Linked List Based Queue, Array Based Queue,
+								Stack Based Queue
+Map								Tree Map/ Hash Map/ Hash Table
+Vehicle							Bicycle, Golf Cart, Electric Car
+ 
+Big'O Notation -	gives an upper bound of the complexity in the Worst Case,
+					helping to quantify performance as the input size becomes
+					arbitrarily large.
+					It caters to both Time & Space Complexity
+					
+	'n' - The size of the Input
+	
+	Complexities ordered in from smallest to largest:
+	Constant Time:					O(1)
+	Logarithmic Time:				O(log(n))
+	Linear Time:					O(n)
+	Line-arithmetic Time:			O(n log(n))
+	Quadric Time:					O(n^2)
+	Cubic Time:						O(n^3)
+	Exponential Time:				O(b^n), where b > 1
+	Factorial Time:					O(n!)
+
+	Execution Time 	= n + (n-1) + (n-2) + (n-3) + ... + 3 + 2 + 1
+					= n(n+1)/2
+					= n^2/2 + n/2
+	O(n^2/2 + n/2) 	= O(n^2)
+	
+	Binary Search(Splits the Search Array in half, checks in Later Half, if not
+	found discards later half & repeats this until Entry is found or the
+	remaining array is empty) execute in log2(n) = O(log(n))
+	
+	Finding all subsets of a Set								- O(2^n)
+	Finding all permutations of a String						- O(n!)
+	Sorting using Merge-Sort									- O(n log(n))
+	Iterating over all the cells in a Matrix of size 'n' by 'm'	- O(nm)
+	
+	
+	
+					 
+	

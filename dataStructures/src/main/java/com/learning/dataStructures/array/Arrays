@@ -1,0 +1,73 @@
+Arrays: Static and Dynamic Arrays:
+
+STATIC ARRAY:
+
+What is a Static Array?
+Its a fixed length container containing 'n' elements indexable from the range [0, n-1]
+Given as contiguous chunk of memory
+
+Indexable - Each slot/index in the Array can be referenced with a number
+
+Uses of Static Array:
+1.	Storing and accessing sequential data
+2.	Temporarily storing objects
+3.	Used by IO Routines as Buffers
+4.	Lookup Tables and Inverse Lookup Tables
+5.	Can be used to return multiple values from a function
+6.	Used in Dynamic Programming to cache answers to subproblems
+
+
+	Complexity:
+	             _______________________________
+				|Static Array:	|Dynamic Array: |
+	 ___________|_______________|_______________|
+	|Access		|	O(1)		|	O(1)		|
+	|___________|_______________|_______________|
+	|Search		|	O(n)		|	O(n)		|
+	|___________|_______________|_______________|
+	|Insertion	|	N/A			|	O(n)		|
+	|___________|_______________|_______________|
+	|Appending	|	N/A			|	O(1)		|
+	|___________|_______________|_______________|
+	|Deletion	|	N/A			|	O(n)		|
+	|___________|_______________|_______________|
+
+
+Sample Static Array:
+	_____________________________________
+A =	|44	|12	|-5	|17	|6	|3	|0	|9	|99	|
+	 ^	 ^	 ^	 ^	 ^	 ^	 ^	 ^	 ^
+	 0	 1	 2	 3	 4	 5	 6	 7	 8
+
+Elements in A are referenced by their 'index'.
+There is no other way to access Elements in Array.
+Array indexing is Zero-Based, meaning first element is found at position zero.
+
+A[0] = 44
+A[8] = 99
+A[9] = index out of bounds
+
+we can reassign values to indices:
+A[0] := 23
+A[8] := 79
+	_____________________________________
+A =	|23	|12	|-5	|17	|6	|3	|0	|9	|79	|
+	 ^	 ^	 ^	 ^	 ^	 ^	 ^	 ^	 ^
+	 0	 1	 2	 3	 4	 5	 6	 7	 8
+
+
+
+DYNAMIC ARRAY:
+
+What is a Dynamic Array?
+Its an Array which can grow & shrink in size dynamically.
+
+How can we implement a Dynamic Array?
+1.	One way is to create a Static Array with an Initial Capacity.
+	*	Create a Static Array with an Initial Capacity
+	*	Add Elements to the underlying Static Array, keeping track of the number
+		of Elements.
+	*	If adding another Element will exceed the capacity, then create a new
+		Static Array with twice the capacity and copy the original elements to
+		it.
+	

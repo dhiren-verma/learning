@@ -1,0 +1,42 @@
+Stack:
+
+A Stack is a  one-ended linear data structure which models a real world stack
+by having two primary operations, namely push and pop. Stacks follows LIFO(Last
+In First Out).
+
+Data____
+		|			 __-> Data
+  Push  |			|
+  		|			|	Pop
+  	   _|___________|_
+Top-> |		Data	  |
+	  |_______________|
+	  |		Data	  |
+	  |_______________|
+	  |		Data	  |
+	  |_______________|
+
+Uses of Stack:
+	*	Used by undo mechanisms in text editors.
+	*	Used in compiler syntax checking for matching brackets and braces.
+	*	Can be used to model a pile of books or plates.
+	*	Used behind the scenes to support recursion by keeping track of previous
+		function calls.
+	*	Can be used to do a Depth First Search(DFS) on a Graph.
+
+
+Complexity Analysis(Considering Stack is implemented using Linked List):					
+	 _______________________________
+	|Pushing			|	O(1)	|
+	|___________________|___________|
+	|Popping			|	O(1)	|
+	|___________________|___________|
+	|Peeking			|	O(1)	|
+	|___________________|___________|
+	|Size				|	O(1)	|
+	|___________________|___________|
+	|Searching			|	O(n)	|
+	|___________________|___________|
+	
+Stack can be implemented with Arrays, Singly Linked List or Doubly Linked List.
+	

@@ -1,0 +1,115 @@
+Priority Queue:
+
+Priority Queue is an Abstract Data Type that operates similar to a normal queue
+except that each element has a certain priority.
+The Priority of the Elements in the Priority Queue determines the order in which
+elements are removed from the Priority Queue.
+
+Note:	Priority Queue only supports Comparable data, meaning that data inserted
+		into the priority queue must be able to be ordered in some way either
+		from least to greatest or from greatest to least. This is so that we are
+		able to assign relative priorities to each element.
+
+Heap:
+
+A heap is a tree based DataStructure that satisfies the heap invariant(also
+called heap property): If A is a parent node of B then A is ordered with respect
+to B for all nodes A, B in the heap.
+
+		8	<-----Root of Heap----->	0
+	   / \							   / \
+	  /	  \							  /	  \
+	 7	   6						 /	   \
+	/ \	   |						/ 	  	\
+   /   \   |					   2		 3
+  3	    2  5					  / \		/ \
+  								 /	 \	   /   \
+  Max. Heap						4	  5	  6		4
+
+								Min. Heap
+
+When and where is a Priority Queue used:
+	*	Used in certain implementations of Dijkstra's Shortest Path Algorithm.
+	*	Any time we need to dynamically fetch the 'nextBest' or 'nextWorst'
+		element.
+	*	Used in Huffman Coding(which is often used for loss less data
+		compression).
+	*	Best First Search(BFS) algorithms such as A* use Priority Queues to
+		continuously grab the next most promising node.
+	*	Used by Minimum Spanning Tree(MST) algorithms.
+
+Complexity Analysis(Priority Queue implemented using Binary Heap):
+	 ___________________________________
+	|Binary Heap		|	O(n)		|
+	|Construction		|				|
+	|___________________|_______________|
+	|Polling			|	O(log(n))	|
+	|___________________|_______________|
+	|Peeking			|	O(1)		|
+	|___________________|_______________|
+	|Adding				|	O(log(n))	|
+	|___________________|_______________|
+	|Naive Removing		|	O(n)		|
+	|					|           	|
+	|___________________|_______________|
+	|Advanced Removing 	|	O(n)		|
+	|with help from		|				|
+	|Hash Table			|				|
+	|___________________|_______________|
+	|Naive Contains		|	O(log(n))	|
+	|___________________|_______________|
+	|Contains check		|	O(1)		|
+	|help of a			|				|
+	|Hash Table			|				|
+	|___________________|_______________|
+	
+	*	Naive means Linearly Scanning to find the Element to remove & then
+		Remove it.
+	*	Using a Hash Table to help optimize these operations does take up linear
+		space and also adds some overhead to the Binary Heap implementation.
+	
+
+Converting Min. Priority Queue to a Max. Priority Queue.
+Why?	Because often the Standard Library of most Programming Languages only
+		provide a Min. Priority Queue, which sorts by smallest elements first,
+		but sometimes we need a Max. Priority Queue.
+		
+Solution:Since elements in a Priority Queue are comparable. They implement some
+		sort of Comparable Interface which we can simply negate to achieve a
+		Max. Heap.
+	
+Ways of Implementing a Priority Queue:
+	Priority Queues are usually implemented with heaps since this gives them the
+	best possible time complexity.
+	
+Note:The Priority Queue is an Abstract Data Type, hence Heaps are not the only
+	way to implement Priority Queues. As an example we could use a Unsorted
+	List, but this would not give us the best possible time complexity.
+	
+Implementing Priority Queue with Binary Heap:
+	In a Binary Heap every node has exactly two children.
+	
+	A Complete Binary Tree is a Tree in which at every level, except possibly
+	the last, is completely filled and all the nodes are as far left as
+	possible.
+	
+	Also for a Binary Heap Representation using Array, if we let that 'i' is the
+	Parent node index, then:
+	Left Child Index = 2i+1
+	Right Child Index = 2i+2
+	(Zero Based)
+	
+
+Removing Elements from Binary Heap in O(log(n))
+	The inefficiency of the removal algorithm comes from the fact that we have
+	to perform a linear search to find out where an element is indexed at.
+	If instead we did a lookup using a Hash Table to find out where a node is
+	indexed at, then we can reduce the Time complexity of removal of an
+	arbitrary element to O(log(n)).
+	Hash Table provides constant time lookup and update for a mapping from a key
+	(the node value) to a value(the index).
+	The only caveat here with a Hash Table approach is 'What is there are two or
+	more nodes with the same value?'
+	The Solution is: Instead of Mapping one value to one position, we will map
+	one value to multiple positions. We can maintain a Set or Tree Set of
+	Indexes for which a particular node value(key) maps to.

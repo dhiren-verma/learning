@@ -1,0 +1,42 @@
+Queue:
+
+ A Queue is a Linear Data Structure which models real world queues by having two
+ primary operations, namely enqueue and dequeue. Its a FIFO DS.
+ 
+  _
+ | |	  _   _   _   _   _		Enqueue
+ |_|<-_  | | | | | | | | | |	  _
+ 	   --|_| |_| |_| |_| |_|<-_  | |
+ Dequeue  ^				  ^	   --|_|
+ 		  |				  |
+ 	 Queue Front	 Queue Back
+	
+	Enququeing = Offering = Adding
+	Dequeueing = Polling = Removing(from the Front of the Queue)
+
+Uses of Queue:
+	*	Any waiting Line models a Queue, for example a lineup at a movie theatre.
+	*	Can be used to efficiently keep track of the 'x' most recent added
+		elements.
+	*	Web Server Request Management where we want first come first serve.
+	*	Breadth First Search(BFS) graph traversal.
+	
+Complexity Analysis:
+	 _______________________________
+	|Enqueue			|	O(1)	|
+	|___________________|___________|
+	|Dequeue			|	O(1)	|
+	|___________________|___________|
+	|Peeking			|	O(1)	|
+	|___________________|___________|
+	|Is Empty			|	O(1)	|
+	|___________________|___________|
+	|Searching			|	O(n)	|
+	|(Contains)			|           |
+	|___________________|___________|
+	|Removal(not from 	|	O(n)	|
+	|start of Queue)	|			|
+	|___________________|___________|
+	
+Queue can be implemented with Arrays, Singly Linked List or Doubly Linked List.
+	

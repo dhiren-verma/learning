@@ -1,0 +1,17 @@
+Heap:
+
+A heap is a tree based DataStructure that satisfies the heap invariant(also
+called heap property): If A is a parent node of B then A is ordered with respect
+to B for all nodes A, B in the heap.
+
+		8	<-----Root of Heap----->	0
+	   / \							   / \
+	  /	  \							  /	  \
+	 7	   6						 /	   \
+	/ \	   |						/ 	  	\
+   /   \   |					   2		 3
+  3	    2  5					  / \		/ \
+  								 /	 \	   /   \
+  Max. Heap						4	  5	  6		4
+
+								Min. Heap
