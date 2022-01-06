@@ -26,24 +26,27 @@ public class UFOEnemyShipBuilding extends EnemyShipBuilding {
 	@Override
 	protected EnemyShip makeEnemyShip(EnemyShipType typeOfShip) {
 		EnemyShip theEnemyShip = null;
+		EnemyShipFactory shipPartsFactory = null;
 		
-		// If UFO was sent grab the factory that knows what
-		//types of weapons and engines a regular UFO needs.
-		//The EnemyShip object is returned & given a name:
-		if (typeOfShip==EnemyShipType.UFO) {
-			EnemyShipFactory shipPartsFactory = UFOEnemyShipFactory.getInstance();
-			theEnemyShip = new UFOEnemyShip(shipPartsFactory);
-			theEnemyShip.setName("UFO Grunt Ship");
-		} else
-		// If UFO BOSS was sent grab the factory that knows
-        // what types of weapons and engines a Boss UFO needs.
-		//The EnemyShip object is returned & given a name:
-		if (typeOfShip==EnemyShipType.BOSS_UFO) {
-			EnemyShipFactory shipPartsFactory = BossUFOEnemyShipFactory.getInstance();
-			theEnemyShip = new BossUFOEnemyShip(shipPartsFactory);
-			theEnemyShip.setName("UFO BOSS Ship");
+		switch (typeOfShip) {
+			// If UFO was sent grab the factory that knows what
+			//types of weapons and engines a regular UFO needs.
+			//The EnemyShip object is returned & given a name:
+			case UFO: 
+				shipPartsFactory = UFOEnemyShipFactory.getInstance();
+				theEnemyShip = new UFOEnemyShip(shipPartsFactory);
+				theEnemyShip.setName("UFO Grunt Ship");
+				break;
+			// If UFO BOSS was sent grab the factory that knows
+	        // what types of weapons and engines a Boss UFO needs.
+			//The EnemyShip object is returned & given a name:
+			case BOSS_UFO:
+				shipPartsFactory = BossUFOEnemyShipFactory.getInstance();
+				theEnemyShip = new BossUFOEnemyShip(shipPartsFactory);
+				theEnemyShip.setName("UFO BOSS Ship");
+				break;
 		}
-
+		
 		System.out.println("\nEnemy Ship Constructed:");
 		
 		return theEnemyShip;

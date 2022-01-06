@@ -36,7 +36,7 @@ public abstract class EnemyShip {
 	public void attackHeroShip() {
 		System.out.println(getName() + " attacks Hero Ship and does " + weapon.getDamage() + " Damage");
 	}
-
+	
 	@Override
 	public String toString() {
 		String infoOnShip = "The name: " + getName() + " has a Top Speed of: " + engine.getSpeed() +
