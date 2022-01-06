@@ -1,4 +1,4 @@
-package learning.generics;
+package learning.random;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -8,7 +8,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class Test {
+public class PowerballSchedulerTest {
 	
 	private static final int dailyPauseTimeHour = 0;
 	private static final int dailyPauseTimeMinute = 2;
@@ -102,7 +102,7 @@ public class Test {
 		//Schedule Link Service Pausing Thread:
 		ScheduledExecutorService ses = Executors.newScheduledThreadPool(3);
 		
-		Test outerInstance = new Test();
+		PowerballSchedulerTest outerInstance = new PowerballSchedulerTest();
 		
 		ScheduledFuture<?> resultUpdater = null;
 		
@@ -175,7 +175,7 @@ public class Test {
 		@Override
 		public void run() {
 			//Initialize & Start Update Timer:
-			resultUpdater = ses.scheduleAtFixedRate((new Test()).new UpdateRemainingTimer(), 0, 1, TimeUnit.SECONDS);
+			resultUpdater = ses.scheduleAtFixedRate((new PowerballSchedulerTest()).new UpdateRemainingTimer(), 0, 1, TimeUnit.SECONDS);
 			
 			//Schedule Deactivation Thread:
 			ZonedDateTime koreanDateTime = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
@@ -187,7 +187,7 @@ public class Test {
 			if (upcomingResumeTime.isBefore(koreanDateTime))
 				upcomingResumeTime = upcomingResumeTime.plusDays(1);
 			
-			ses.schedule((new Test()).new DeactivationThread(ses, upcomingResumeTime, resultUpdater), deactivationDelay, TimeUnit.SECONDS);
+			ses.schedule((new PowerballSchedulerTest()).new DeactivationThread(ses, upcomingResumeTime, resultUpdater), deactivationDelay, TimeUnit.SECONDS);
 			
 			System.out.println("Have run Activation Thread @"+koreanDateTime+
 					"\nHave started Game Updater Thread"+
@@ -226,7 +226,7 @@ public class Test {
 			if (upcomingPauseTime.isBefore(koreanDateTime))
 				upcomingPauseTime = upcomingPauseTime.plusDays(1);
 			
-			ses.schedule((new Test()).new ActivationThread(ses, upcomingPauseTime), activationDelay, TimeUnit.SECONDS);
+			ses.schedule((new PowerballSchedulerTest()).new ActivationThread(ses, upcomingPauseTime), activationDelay, TimeUnit.SECONDS);
 			
 			System.out.println("Have run Deactivation Thread @"+koreanDateTime+
 					"\nHave stopped Game Updater Thread"+

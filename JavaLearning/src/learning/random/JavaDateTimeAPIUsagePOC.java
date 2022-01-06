@@ -1,14 +1,13 @@
-package learning.generics;
+package learning.random;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Hashtable;
 import java.util.concurrent.TimeUnit;
 
-public class Test1 {
+public class JavaDateTimeAPIUsagePOC {
 	
 	public static void main(String[] args) {
 		// Current date and time using now()
