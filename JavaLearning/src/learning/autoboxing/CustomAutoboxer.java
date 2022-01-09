@@ -1,7 +1,5 @@
 package learning.autoboxing;
 
-import java.util.Arrays;
-
 public class CustomAutoboxer {
 	
 	/**
@@ -61,8 +59,8 @@ public class CustomAutoboxer {
 			//range [-128, 127] must be interned (JLS7 5.1.7)
 			assert IntegerCache.high >= 127;
 			
-			System.out.println("Integer Cache:");
-			Arrays.stream(cache).forEach(System.out::println);
+//			System.out.println("Integer Cache:");
+//			Arrays.stream(cache).forEach(System.out::println);
 		}
 		
 		private IntegerCache() {}
