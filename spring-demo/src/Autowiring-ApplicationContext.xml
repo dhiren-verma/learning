@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    
+    <!-- There are 4 Auto-wiring options available to XML Based Spring Config:
+    	 1. no - No Auto-wiring - DEFAULT FOR "XML BASED SPRING CCONFIGURATION"
+    	 			 WE have to explicitly set the dependencies using <property> tags in
+    	 			 bean definitions.
+    	 2. byName - When auto-wiring a property in Bean, the property name is used for
+    	 			 searching a matching bean definition in XML Config file. If such a
+    	 			 Bean is found, it is injected into the property. If  no such bean is
+    	 			 found, Property Setter Injection doesn't take place.
+    	 			 Ambiguity can't be caused here as two Beans can in no way have same Id
+    	 			 or Name, the Spring Container wont allow that, in case attempted,
+    	 			 "BeanDefinitionParsingException" is thrown.
+    	 3. byType - When auto-wiring a property in Bean, the property's class type is
+    	 			 used for searching a matching bean definition in the XML Config file.
+    	 			 If such a Bean is found, it is injected into the property. If no such
+    	 			 bean is found, Property Setter Injection doesn't take place.
+    	 			 In case of Ambiguity, "NoUniqueBeanDefinitionException" is thrown.
+    	 4. constructor - Its similar to byType, but applies to Constructor arguments. If
+    	 			 there isn't one bean of the constructor argument type in the container,
+    	 			 "NoSuchBeanDefinitionException" is thrown. in case of Ambiguity,
+    	 			 "NoUniqueBeanDefinitionException" is thrown.
+    	 
+    	 To resolve Bean Ambiguity in case of Multiple Bean available of same type, we can
+    	 exclude a Bean from autowiring by using 'autowire-candidate="false"' with that Bean
+    	 definition". Although this only works in case of byType or constructor auto-wired
+    	 Beans.
+    	 
+    	 Another option is to limit autowire candidates based on pattern matching against
+    	 bean names, We can configure this in top level "beans" element with
+    	 'default-autowire-candidates="pattern1, pattern2, ..."' attribute.
+    	 However, if also using 'autowire-candidate' with bean definition, then its always
+    	 given precedence over 'default-autowire-candidates'.
+    -->
+    
+    <!-- Dependency Beans: -->
+    <bean id="myFortuneService"
+    		class="com.spring.demo.LuckyFortuneService"
+    		autowire-candidate="false" />
+	
+	<bean id="customFortuneService"
+			class="com.spring.demo.RandomFortuneService" />
+    
+    
+    <!-- 1. no Auto-wiring: -->
+    <bean id="noAutowiringCoach"
+    		class="com.spring.autowiring.demo.NoAutowiringCoach"
+    		autowire="default" lazy-init="true"><!-- equals to autowire="no" -->
+    	<property name="fortuneService" ref="customFortuneService" />
+    </bean>
+    
+    <!-- 2. byName: -->
+    <bean id="byNameAutowiredCoach"
+    		class="com.spring.autowiring.demo.NameAutowiringCoach"
+    		autowire="byName" lazy-init="true"/>
+    
+    <!-- 3. byType: -->
+    <bean id="byTypeAutowiredCoach"
+    		class="com.spring.autowiring.demo.TypeAutowiringCoach"
+    		autowire="byType" lazy-init="true"/>
+    
+    <!-- 4. constructor: -->
+    <bean id="constructorAutowiredCoach"
+    		class="com.spring.autowiring.demo.ConstructorAutowiringCoach"
+    		autowire="constructor" lazy-init="true"/>
+    
+</beans>
