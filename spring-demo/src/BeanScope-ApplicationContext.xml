@@ -14,6 +14,12 @@
 		<property name="printLoggerLevel" value="FINE"/>
 	</bean>
 	
+	<!-- Custom Processor for Prototype Beans, to handle lifecycle method(destruction) when Container is being destroyed: -->
+	<!-- 
+	<bean id="customProcessor"
+    		class="com.spring.demo.prototypeBeanDestructionProcessor.MyPrototypeBeanProcessor" />
+   	 -->
+   	 
 	<!-- Bean Scopes available:
 		1. singleton 		- Single Shared Bean Instance(Default)
 		2. prototype 		- New Bean Instance per Container Request

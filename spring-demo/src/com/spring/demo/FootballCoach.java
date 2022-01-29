@@ -25,12 +25,12 @@ public class FootballCoach implements Coach {//, InitializingBean, DisposableBea
 	public String getDailyWorkout() {
 		return "Do Dribbling Practice for 30 Mins";
 	}
-
+	
 	@Override
 	public String getFortune() {
 		return fortuneService.getFortune();
 	}
-
+	
 //	@Override
 //	public void destroy() throws Exception {
 //		System.out.println("Destructing Football Coach using DisposableBean destroy method");
