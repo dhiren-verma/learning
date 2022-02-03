@@ -1,4 +1,4 @@
-package com.learning.spring_boot_demo;
+package com.learning.spring_boot_actuator_demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

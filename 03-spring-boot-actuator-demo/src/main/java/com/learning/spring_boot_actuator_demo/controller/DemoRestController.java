@@ -1,4 +1,4 @@
-package com.learning.spring_boot_devtools_demo.controller;
+package com.learning.spring_boot_actuator_demo.controller;
 
 import java.time.LocalDateTime;
 
