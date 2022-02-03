@@ -1,0 +1,109 @@
+1.	Factory methods for Immutable Collection(like List, Map, Set, Map.Entry) to
+	create an Empty or Non-Empty Immutable Collection. Example:
+		List.of() - Empty,
+		List.of("One", "Two", "Three") - Non-Empty;
+		Map.of() - Empty
+		Map.of(1, "One", 2, "Two", 3, "Three");
+
+2.	Stream API Improvements introduced as default methods in the Stream Interface.
+	They allow us to create declarative pipelines of transformations on collections.
+	Four new methods are dropWhile(), takeWhile(), ofNullable() and an overload of
+	iterate() method, that allows us to provide a Predicate for when to stop iterating.
+
+3.	Private Methods and Static Methods with Private access specifier in Interfaces
+	This is to avoid redundant code & improve re-usability.
+
+4.	Java-9 Platform Module System: It introduces following projects as part of
+	Project Jigsaw:
+		* Modular JDK
+		* Modular Java Source Code
+		* Modular Java Runtime Images
+		* Encapsulate Java Internal APIs
+		* Java Platform Module System
+	Earlier we only had Monolithic JARs, now we have Modular JARs
+
+5.	Try with Resources Improvement:
+	We can use a final or effectively-final Resource which implement java.lang.AutoCloseable
+	or java.io.Closeable which is declared outside try-with-resources to be managed by
+	try-with-resources block.
+
+6.	CompletableFuture API improvement:
+	Added support for some delays and timeouts, some utility methods and better
+	sub-classing. Example:
+		Executor exe = CompletableFuture.delayedExecutor(50L, TimeUnit.SECONDS);
+
+7.	JShell - the interactive Java REPL
+	A new tool called JShell has been introduced, it stands for Java Shell and also
+	known as Read Evaluate Print Loop(REPL). Used to execute and test constructs like
+	class, interface, enum, objects, statement, etc. very easily. It can be launched
+	from the console itself, and we can start typing and executing java code. It makes
+	up a great tool to explore APIs and try out new Java features.
+
+8.	Reactive Stream with Flow API:
+	java.util.concurrent.Flow -  Final Class - Main Class of Flow API, encapsulates all
+		the important interfaces of Flow API
+	java.util.concurrent.Flow.Publisher<T> - Functional Interface - has subscribe() method
+		to add given subscriber to receive messages.
+	java.util.concurrent.Flow.Subscriber<T> - Interface - has four methods
+		*onSubscribe(Subscription) - gets called as soon as we register Subscriber with
+			Publisher.
+		*onNext(<T>) - gets called when an item is received from publisher.
+		*onError(Throwable) - gets called when there is an irrecoverable error.
+		*onCompletion() - gets called when there are no more being produced by publisher
+			and publisher is closed.
+	java.util.concurrent.Flow.Subscription - used to create asynchronous non-blocking link
+		between Publisher and Subscriber. Subscriber invokes its request() method to demand
+		more items from Publisher. cancel() method can be used to cancel the subscription.
+	java.util.concurrent.Flow.Processor - This interface extends both Publisher and Subscriber
+		used to transform the message between Publisher and Subscriber.
+	java.util.concurrent.SubmissionPublisher - A Publisher implementation that asynchronously
+		issues submitted items to current subscribers until it is closed. It uses Executor
+		framework. We use this Class in Reactive Stream examples to add subscriber and submit
+		items to them.
+
+9.	Optional class improvement:
+	Added stream() to work on Optional objects lazily.
+	Added ifPresentOrElse() method.
+	Added or(Supplier) method.
+
+10.	Diamond Operator with Inner Class
+
+11.	HTTP/2 Client:
+	Existing Java HTTP Client has numerous issues, like supports HTTP/1.1 Protocol and
+	Web Sockets, works only in Blocking Mode and has lot of performance issues.
+	In Java-9, this HttpUrlConnection has been replaced with HttpClient under
+	java.net.http package. It supports both HTTP/1.1 and HTTP/2 Protocol, and supports
+	both Synchronous(Blocking) and Asynchronous(Non-Blocking) Modes. Supports
+	Asynchronous Mode using WebSocket API. Example:
+		HttpClient client = HttpClient.newHttpClient();
+		
+		HttpRequest request = HttpRequest.newBuilder(URI.create(""http://www.google.com)).
+										  header("User-Agent", "Java").
+										  GET().
+										  build();
+		
+		HttpResponse response = client.send(request, HttpResponse.BodyHandler().asString());
+
+Miscellaneous Updates:
+*	Improved Javadoc(Search and etc.)
+*	Improvements in Process API
+*	Multi-resolution Image API
+*	GC Improvements
+*	Stack-Walking API
+*	Filter incoming Serialization Data
+*	Deprecate the Applet API
+*	Indify String concatenation
+*	Enhanced Method Handles
+*	Java Platform Logging API and Service
+*	Compact Strings
+*	Parser API for Nashorn
+
+
+
+
+
+
+
+
+
+

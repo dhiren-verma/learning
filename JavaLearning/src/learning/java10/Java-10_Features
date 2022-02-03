@@ -1,0 +1,47 @@
+1.	Local variable Type Inference:
+	Its limited only to Local Variables with Initializer, Indexes of enhanced
+	for loop or indexes, Local declared in for loop. Example:
+		// Local variable with Initializer
+		var numbers = List.of(1, 2, 3, 4, 5); // inferred value ArrayList<String>
+		// Index of Enhanced For Loop
+		for (var number : numbers) {
+			System.out.println(number);
+		}
+		// Local variable declared in a loop
+		for (var i = 0; i < numbers.size(); i++) {
+			System.out.println(numbers.get(i));
+		}
+
+2.	Experimental Java based JIT Compiler(Graal) on the Linux/x64 Platform
+
+3.	Application Class Data Sharing
+
+4.	Parallel full GC for G1 Garbage Collector.
+
+5.	Garbage Collector Interface
+
+6.	Additional Unicode Language Tag Expression
+
+7.	Root Certificates
+
+8.	Thread Local Handshakes
+
+9.	Heap Allocations on alternative Memory Devices
+
+10.	Remove the Native-Header Generation Tool - javah
+
+11.	Consolidate the JDK Forest into a Single Repository
+
+12.	Added APIs:
+	* List, Set and Map Interfaces are added with a static copyOf() method that
+	  returns an unmodifiable Collection.
+	* Optional & its primitive variations get a method orElseThrow(). This is
+	  exactly same as get(), however the java doc states that it is a preferred
+	  alternative then get().
+	* Collectors class gets various methods for collecting unmodifiable
+	  collections (Set, List, Map).
+
+
+
+
+

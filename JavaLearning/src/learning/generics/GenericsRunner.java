@@ -80,6 +80,13 @@ public class GenericsRunner {
 		addACoupleOfValues(emptyList);
 		
 		System.out.println("List of Numbers with some Entries added is:" + emptyList);
+		
+		//To an Upper Bounded Method, we can only pass the Bounding Type or any of its Super Types:
+		//Here reusing the Lists declared above:
+		printOnlyIntegerClassOrSupertype(intList);
+		printOnlyIntegerClassOrSupertype(numbers);
+		//Compile Time Exception, as Double is neither Integer or any of its Supertype:"
+//		printOnlyIntegerClassOrSupertype(doubleList);
 	}
 
 	//Generic Arguments with Methods:
@@ -100,6 +107,7 @@ public class GenericsRunner {
 	//1. We can't mention a Type for a Class using Wildcard.
 	//2. Wildcards can only be used with Methods & their Local and Member Variables:
 	//This below example is an Upper Bounded Wild Card:
+	//It will accept Number List and Any Sub-type of Number List:
 	static double sumOfNumberList(List<? extends Number> numbers) {
 		double sum = 0.0;
 		
@@ -111,11 +119,19 @@ public class GenericsRunner {
 	}
 
 	//Lower Bounded Wild Card:
+	//But thing to remember is Lower Bounds and Upper Bounds only apply to the Parameter
+	//that is being passed to the Method.
+	//Inside the Method, the List will be treated as being of the Type that is explicitly
+	//mentioned in the Bounding Parameter:
 	static void addACoupleOfValues(List<? super Number> numbers) {
 		numbers.add(1);
-		numbers.add(1.0);
-		numbers.add(1.0f);
-		numbers.add(1l);
+		numbers.add(1.0);	//this would be Compile Time Exception if the List was upper bounded by Integer
+		numbers.add(1.0f);	//this would be Compile Time Exception if the List was upper bounded by Integer
+		numbers.add(1l);	//this would be Compile Time Exception if the List was upper bounded by Integer
 	}
-
+	
+	
+	static void printOnlyIntegerClassOrSupertype(List<? super Integer> list) {
+		System.out.println(list);
+	}
 }

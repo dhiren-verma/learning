@@ -1,0 +1,31 @@
+1.	New methods in String Class:
+	isBlank(), lines(), repeat(n), stripLeading(), stripTrailing(), strip()
+	strip and its flavors are Unicode aware version of trim().
+
+2.	New File Methods:
+	writeString(), readString(), isSameFile()
+
+3.	Pattern recognizing methods:
+	asMatchPredicate()
+
+4.	Epsilon Garbage Collector:
+	Handles memory allocation but doesn't have actual Memory Reclamation mechanism.
+	Once available Heap is exhausted, JVM will shut-down. Its goals are:
+		* Performance testing
+		* Memory pressure testing
+		* Last drop latency improvements
+
+5.	Removed the Java EE and CORBA Modules.
+
+6.	Removal of thread functions, stop(Throwable) and destroy()
+
+7.	Time Unit Conversion
+
+8.	Optional.isEmpty() method
+
+9.	Local Variable syntax for Lambda Parameters:
+	(var param1, var param2) -> param1+param2
+	Limitations: You must specify the type var on all parameters or none,
+				 Also need parentheses if using var.
+
+ 
