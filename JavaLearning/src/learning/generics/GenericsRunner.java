@@ -130,7 +130,6 @@ public class GenericsRunner {
 		numbers.add(1l);	//this would be Compile Time Exception if the List was upper bounded by Integer
 	}
 	
-	
 	static void printOnlyIntegerClassOrSupertype(List<? super Integer> list) {
 		System.out.println(list);
 	}

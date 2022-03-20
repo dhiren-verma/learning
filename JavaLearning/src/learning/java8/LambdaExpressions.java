@@ -11,7 +11,7 @@ class Calc {
 	public static void addSomething(int value1, int value2) {
 		System.out.println("Addition of "+value1+" and "+value2+" is: "+(value1+value2));
 	}
-
+	
 	public void letsAdd(int val1, int val2) {
 		System.out.println("Sum of "+val1+" and "+val2+" is: "+(val1+val2));
 	}
