@@ -4,30 +4,30 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class NotFoundException extends RuntimeException {
+public class EmployeeNotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5786110485502741605L;
 
-	public NotFoundException() {
+	public EmployeeNotFoundException() {
 		super();
 	}
 
-	public NotFoundException(String message) {
+	public EmployeeNotFoundException(String message) {
 		super(message);
 	}
 
-	public NotFoundException(String message, Throwable cause) {
+	public EmployeeNotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public NotFoundException(Throwable cause) {
+	public EmployeeNotFoundException(Throwable cause) {
 		super(cause);
 	}
 
-	protected NotFoundException(String message, Throwable cause, boolean enableSuppression,
+	protected EmployeeNotFoundException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}

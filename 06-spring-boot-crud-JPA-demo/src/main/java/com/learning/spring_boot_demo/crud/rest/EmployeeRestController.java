@@ -18,7 +18,7 @@ import com.learning.spring_boot_demo.crud.entity.Employee;
 import com.learning.spring_boot_demo.crud.service.EmployeeService;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class EmployeeRestController {
 
 	private EmployeeService empService;
@@ -26,10 +26,10 @@ public class EmployeeRestController {
 	@Autowired
 	public EmployeeRestController(EmployeeService empService) {
 		this.empService = empService;
-	} 
+	}
 
 	@GetMapping("/employees")
-	public ResponseEntity<List<Employee>> findAll() {
+	public ResponseEntity<List<Employee>> findAllEmployees() {
 		List<Employee> allEmployees = empService.findAllEmployees();
 		
 		if (allEmployees.isEmpty())
@@ -40,7 +40,7 @@ public class EmployeeRestController {
 	}
 
 	@GetMapping("/employees/{employeeId}")
-	public ResponseEntity<Employee> findById(@PathVariable int employeeId) {
+	public ResponseEntity<Employee> findEmployeeById(@PathVariable int employeeId) {
 		Employee employee = empService.findEmployeeById(employeeId);
 		return new ResponseEntity<>(employee, HttpStatus.FOUND);
 	}
@@ -64,11 +64,8 @@ public class EmployeeRestController {
 	}
 
 	@DeleteMapping("/employees/{employeeId}")
-	public ResponseEntity<String> deleteById(@PathVariable int employeeId) {
+	public ResponseEntity<String> deleteEmployeeById(@PathVariable int employeeId) {
 		empService.findEmployeeById(employeeId);
-		
-//		if (tempEmp == null)
-//			throw new RuntimeException("Employee Id not found - " + employeeId);
 		
 		empService.deleteEmployeeById(employeeId);
 		

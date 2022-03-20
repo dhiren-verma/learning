@@ -5,18 +5,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.learning.spring_boot_demo.crud.exception.NotFoundException;
+import com.learning.spring_boot_demo.crud.exception.EmployeeNotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(value = NotFoundException.class)
-	public ResponseEntity<String> employeeNotFound(NotFoundException nfe) {
-		return new ResponseEntity<>(nfe.getMessage(), HttpStatus.NOT_FOUND);
+	@ExceptionHandler(value = EmployeeNotFoundException.class)
+	public ResponseEntity<String> employeeNotFound(EmployeeNotFoundException enfe) {
+		return new ResponseEntity<>(enfe.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
-	public ResponseEntity<String> internalServerException(Exception internalServerException) {
-		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	@ExceptionHandler(value = Exception.class)
+	public ResponseEntity<String> internalServerException(Exception ex) {
+		return new ResponseEntity<>("Internal Server Error!", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

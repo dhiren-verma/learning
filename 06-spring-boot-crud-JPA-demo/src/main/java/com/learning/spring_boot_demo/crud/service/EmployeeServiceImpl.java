@@ -1,7 +1,6 @@
 package com.learning.spring_boot_demo.crud.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learning.spring_boot_demo.crud.dao.EmployeeDAO;
 import com.learning.spring_boot_demo.crud.entity.Employee;
-import com.learning.spring_boot_demo.crud.exception.NotFoundException;
+import com.learning.spring_boot_demo.crud.exception.EmployeeNotFoundException;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -32,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public Employee findEmployeeById(int id) {
 		return empDao.findEmployeeById(id).
-				orElseThrow(() -> new NotFoundException("Employee with Id: "+id+" not found!"));
+				orElseThrow(() -> new EmployeeNotFoundException("Employee with Id: "+id+" not found!"));
 	}
 
 	@Override
