@@ -1,6 +1,7 @@
 package com.learning.spring_boot_demo.crud.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learning.spring_boot_demo.crud.dao.EmployeeDAO;
 import com.learning.spring_boot_demo.crud.entity.Employee;
+import com.learning.spring_boot_demo.crud.exception.NotFoundException;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,26 +24,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public List<Employee> findAll() {
-		return empDao.findAll();
+	public List<Employee> findAllEmployees() {
+		return empDao.findAllEmployees();
 	}
 
 	@Override
 	@Transactional
-	public Employee findById(int id) {
-		return empDao.findById(id);
+	public Employee findEmployeeById(int id) {
+		return empDao.findEmployeeById(id).
+				orElseThrow(() -> new NotFoundException("Employee with Id: "+id+" not found!"));
 	}
 
 	@Override
 	@Transactional
-	public void save(Employee theEmployee) {
-		empDao.save(theEmployee);
+	public void saveEmployee(Employee theEmployee) {
+		empDao.saveEmployee(theEmployee);
 	}
 
 	@Override
 	@Transactional
-	public void deleteById(int id) {
-		empDao.deleteById(id);
+	public void deleteEmployeeById(int id) {
+		empDao.deleteEmployeeById(id);
 	}
 
 }

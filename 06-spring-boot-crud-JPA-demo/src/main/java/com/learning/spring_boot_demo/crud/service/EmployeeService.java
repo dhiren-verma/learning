@@ -6,12 +6,12 @@ import com.learning.spring_boot_demo.crud.entity.Employee;
 
 public interface EmployeeService {
 	
-	public List<Employee> findAll();
+	public List<Employee> findAllEmployees();
 	
-	public Employee findById(int id);
+	public Employee findEmployeeById(int id);
 	
-	public void save(Employee theEmployee);
+	public void saveEmployee(Employee theEmployee);
 	
-	public void deleteById(int id);
+	public void deleteEmployeeById(int id);
 
 }

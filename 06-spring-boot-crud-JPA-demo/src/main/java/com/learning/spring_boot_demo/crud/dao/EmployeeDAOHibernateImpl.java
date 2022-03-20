@@ -1,6 +1,7 @@
 package com.learning.spring_boot_demo.crud.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -22,7 +23,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 	}
 	
 	@Override
-	public List<Employee> findAll() {
+	public List<Employee> findAllEmployees() {
 		//Get current Hibernate Session:
 		Session currentSession = entityManager.unwrap(Session.class);
 		
@@ -37,26 +38,26 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee findById(int id) {
+	public Optional<Employee> findEmployeeById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		Employee theEmployee = currentSession.get(Employee.class, id);
 		
-		return theEmployee;
+		return Optional.ofNullable(theEmployee);
 	}
 
 	@Override
-	public void save(Employee theEmployee) {
+	public void saveEmployee(Employee theEmployee) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		currentSession.saveOrUpdate(theEmployee);
 	}
 
 	@Override
-	public void deleteById(int id) {
+	public void deleteEmployeeById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
-		Query theQuery = currentSession.createQuery("delete from Employee where id=:employeeId");
+		Query<Employee> theQuery = currentSession.createQuery("delete from Employee where id=:employeeId", Employee.class);
 		
 		theQuery.setParameter("employeeId", id);
 		
