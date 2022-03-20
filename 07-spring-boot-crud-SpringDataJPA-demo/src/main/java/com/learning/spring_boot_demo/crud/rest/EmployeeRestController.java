@@ -3,6 +3,8 @@ package com.learning.spring_boot_demo.crud.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,33 +18,39 @@ import com.learning.spring_boot_demo.crud.entity.Employee;
 import com.learning.spring_boot_demo.crud.service.EmployeeService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class EmployeeRestController {
 
 	private EmployeeService empService;
-	
+
 	@Autowired
 	public EmployeeRestController(EmployeeService empService) {
 		this.empService = empService;
 	} 
-	
+
 	@GetMapping("/employees")
-	public List<Employee> findAll() {
-		return empService.findAll();
+	public ResponseEntity<List<Employee>> findAll() {
+		List<Employee> allEmployees = empService.findAll();
+		
+		if (allEmployees.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		else
+			return new ResponseEntity<>(allEmployees, HttpStatus.OK);
+		
 	}
-	
+
 	@GetMapping("/employees/{employeeId}")
-	public Employee findById(@PathVariable int employeeId) {
+	public ResponseEntity<Employee> findById(@PathVariable int employeeId) {
 		Employee employee = empService.findById(employeeId);
 		
-		if (employee == null)
-			throw new RuntimeException("Employee Id not found - " + employeeId);
+//		if (employee == null)
+//			throw new RuntimeException("Employee Id not found - " + employeeId);
 		
-		return employee;
+		return new ResponseEntity<>(employee, HttpStatus.FOUND);
 	}
 
 	@PostMapping("/employees")
-	public Employee addEmployee(@RequestBody Employee theEmployee) {
+	public ResponseEntity<Employee> addEmployee(@RequestBody Employee theEmployee) {
 		//Reset Employee's Id as '0', because if Client sends some other value
 		//and an Employee with that Id already exists, then that Entry will get
 		//updated in DB:
@@ -50,27 +58,28 @@ public class EmployeeRestController {
 		
 		empService.save(theEmployee);
 		
-		return theEmployee;
+		return new ResponseEntity<>(theEmployee, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/employees")
-	public Employee updateEmployee(@RequestBody Employee theEmployee) {
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee theEmployee) {
 		empService.save(theEmployee);
 		
-		return theEmployee;
+		return new ResponseEntity<>(theEmployee, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/employees/{employeeId}")
-	public String deleteById(@PathVariable int employeeId) {
-		Employee tempEmp = empService.findById(employeeId);
+	public ResponseEntity<String> deleteById(@PathVariable int employeeId) {
+//		Employee tempEmp = 
+		empService.findById(employeeId);
 		
-		if (tempEmp == null)
-			throw new RuntimeException("Employee Id not found - " + employeeId);
+//		if (tempEmp == null)
+//			throw new RuntimeException("Employee Id not found - " + employeeId);
 		
 		empService.deleteById(employeeId);
 		
-		return "Deleted Employee with Id - "+employeeId;
+		return new ResponseEntity<>("Deleted Employee with Id - "+employeeId, HttpStatus.OK);
 		
 	}
-	
+
 }

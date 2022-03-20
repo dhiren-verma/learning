@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.learning.spring_boot_demo.crud.dao.EmployeeRepository;
 import com.learning.spring_boot_demo.crud.entity.Employee;
+import com.learning.spring_boot_demo.crud.exception.EmployeeNotFoundException;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -29,7 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 //	@Transactional
 	public Employee findById(int id) {
-		return empRepo.findById(id).orElse(null);
+		return empRepo.findById(id).
+				orElseThrow(() -> new EmployeeNotFoundException("Employee with Id: "+id+" not found!"));
 	}
 
 	@Override
