@@ -18,7 +18,10 @@ import com.spring.annotations.interfaces.FortuneService;
 @Component
 public class FileFortuneService implements FortuneService {
 	
-	private String filePath = "C:/Users/PC/git/repository/spring-annotations-demo/src/fortuneFile.txt";
+	//Windows Specific Path:
+//	private String filePath = "C:/Users/PC/git/repository/spring-annotations-demo/src/fortuneFile.txt";
+	//Linux Specific Path:
+	private String filePath = "/home/dhiren/git/learning/spring-annotations-demo/src/fortuneFile.txt";
 	private List<String> fortuneList;
 	
 	private Random random = new Random();
