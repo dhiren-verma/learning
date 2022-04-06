@@ -26,11 +26,11 @@ public class EmployeeRestController {
 	@Autowired
 	public EmployeeRestController(EmployeeService empService) {
 		this.empService = empService;
-	} 
+	}
 
 	@GetMapping("/employees")
-	public ResponseEntity<List<Employee>> findAll() {
-		List<Employee> allEmployees = empService.findAll();
+	public ResponseEntity<List<Employee>> findAllEmployees() {
+		List<Employee> allEmployees = empService.findAllEmployees();
 		
 		if (allEmployees.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -40,8 +40,8 @@ public class EmployeeRestController {
 	}
 
 	@GetMapping("/employees/{employeeId}")
-	public ResponseEntity<Employee> findById(@PathVariable int employeeId) {
-		Employee employee = empService.findById(employeeId);
+	public ResponseEntity<Employee> findEmployeeById(@PathVariable int employeeId) {
+		Employee employee = empService.findEmployeeById(employeeId);
 		
 //		if (employee == null)
 //			throw new RuntimeException("Employee Id not found - " + employeeId);
@@ -56,27 +56,28 @@ public class EmployeeRestController {
 		//updated in DB:
 		theEmployee.setId(0);
 		
-		empService.save(theEmployee);
+		empService.saveEmployee(theEmployee);
 		
 		return new ResponseEntity<>(theEmployee, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/employees")
-	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee theEmployee) {
-		empService.save(theEmployee);
+	@PutMapping("/employees/{employeeId}")
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee theEmployee,
+			@PathVariable int employeeId) {
+		empService.updateEmployee(theEmployee);
 		
 		return new ResponseEntity<>(theEmployee, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/employees/{employeeId}")
-	public ResponseEntity<String> deleteById(@PathVariable int employeeId) {
+	public ResponseEntity<String> deleteEmployeeById(@PathVariable int employeeId) {
 //		Employee tempEmp = 
-		empService.findById(employeeId);
+//		empService.findEmployeeById(employeeId);
 		
 //		if (tempEmp == null)
 //			throw new RuntimeException("Employee Id not found - " + employeeId);
 		
-		empService.deleteById(employeeId);
+		empService.deleteEmployeeById(employeeId);
 		
 		return new ResponseEntity<>("Deleted Employee with Id - "+employeeId, HttpStatus.OK);
 		
