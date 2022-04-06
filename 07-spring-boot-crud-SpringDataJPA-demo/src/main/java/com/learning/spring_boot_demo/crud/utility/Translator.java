@@ -11,12 +11,6 @@ public class Translator {
 		return new EmployeeDTO(emp.getId(), emp.getFirstName(), emp.getLastName(), emp.getEmail());
 	}
 	
-//	public static List<EmployeeDTO> translateEntityToDTO(List<Employee> emps) {
-//		return emps.stream().
-//				map(emp -> new EmployeeDTO(emp.getId(), emp.getFirstName(), emp.getLastName(), emp.getEmail())).
-//				collect(Collectors.toList());
-//	}
-	
 	public static Employee translateDTOToEntity(EmployeeDTO empDto) {
 		return  new Employee(empDto.getId(), empDto.getFirstName(), empDto.getLastName(), empDto.getEmail());
 		
