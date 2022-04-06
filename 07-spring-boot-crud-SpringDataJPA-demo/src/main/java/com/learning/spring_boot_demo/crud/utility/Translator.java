@@ -5,6 +5,8 @@ import com.learning.spring_boot_demo.crud.entity.Employee;
 
 public class Translator {
 	
+	private Translator() {}
+	
 	public static EmployeeDTO translateEntityToDTO(Employee emp) {
 		return new EmployeeDTO(emp.getId(), emp.getFirstName(), emp.getLastName(), emp.getEmail());
 	}

@@ -145,8 +145,8 @@ class EmployeeServiceImplTest {
 		verify(employeeRepository, never()).save(any());
 	}
 	
-
-	public void canUpdateEmployee() {
+	@Test
+	void canUpdateEmployee() {
 		// given:
 		Employee emp = new Employee(1, "Dhiren", "Verma", "dhiren@gmail.com");
 		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
@@ -193,7 +193,7 @@ class EmployeeServiceImplTest {
 //	}
 	
 	@Test
-	public void willThrowWhenUpdateUpdateRequestEmployeeIdNotFound() {
+	void willThrowWhenUpdateUpdateRequestEmployeeIdNotFound() {
 		// given:
 		Employee emp = new Employee(1, "Dhiren", "Verma", "dhiren@gmail.com");
 		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
@@ -208,8 +208,9 @@ class EmployeeServiceImplTest {
 			isInstanceOf(EmployeeNotFoundException.class).
 			hasMessageContaining("Employee with Id: "+emp.getId()+" not found!");
 	}
+	
 	@Test
-	public void canDeleteEmployeeById() {
+	 void canDeleteEmployeeById() {
 		// given:
 		int id = 10;
 		
@@ -229,7 +230,7 @@ class EmployeeServiceImplTest {
 	}
 	
 	@Test
-	public void willThrowWhenDeleteEmployeeNotFound() {
+	void willThrowWhenDeleteEmployeeNotFound() {
 		// given:
 		int id = 10;
 		
