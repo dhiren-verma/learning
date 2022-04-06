@@ -20,8 +20,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.learning.spring_boot_demo.crud.dao.EmployeeRepository;
+import com.learning.spring_boot_demo.crud.dto.EmployeeDTO;
 import com.learning.spring_boot_demo.crud.entity.Employee;
 import com.learning.spring_boot_demo.crud.exception.EmployeeWithMailAlreadyExistsException;
+import com.learning.spring_boot_demo.crud.utility.Translator;
 import com.learning.spring_boot_demo.crud.exception.EmployeeNotFoundException;
 
 //Replacement for Commented Mock:
@@ -63,7 +65,8 @@ class EmployeeServiceImplTest {
 			willReturn(Optional.of(emp));
 		
 		// when
-		Employee returnedEmp = underTest.findEmployeeById(id);
+		EmployeeDTO returnedEmpDTO = underTest.findEmployeeById(id);
+		Employee returnedEmp = Translator.translateDTOToEntity(returnedEmpDTO);
 		
 		// then
 		assertThat(returnedEmp).isEqualTo(emp);
@@ -90,9 +93,9 @@ class EmployeeServiceImplTest {
 	void canAddEmployee() {
 		// given:
 		Employee emp = new Employee(1, "Jamila", "Cabilo", "jamila@gmail.com");
-		
+		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
 		// when:
-		underTest.saveEmployee(emp);
+		underTest.saveEmployee(empDto);
 		
 		// then:
 		// In this Step we are instantiating an ArgumetnCaptor,
@@ -115,6 +118,7 @@ class EmployeeServiceImplTest {
 	void willThrowWhenEmailIsTaken() {
 		// given:
 		Employee emp = new Employee(1, "Jamila", "Cabilo", "jamila@gmail.com");
+		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
 		
 //		//Setting Mock condition:
 //		given(employeeRepository.selectExistsEmail(emp.getEmail())).
@@ -127,7 +131,7 @@ class EmployeeServiceImplTest {
 		
 		// when:
 		// then:
-		assertThatThrownBy(() -> underTest.saveEmployee(emp)).
+		assertThatThrownBy(() -> underTest.saveEmployee(empDto)).
 			isInstanceOf(EmployeeWithMailAlreadyExistsException.class).
 			hasMessageContaining("Employee with Email: "+emp.getEmail()+" already exists!");
 		
@@ -140,12 +144,14 @@ class EmployeeServiceImplTest {
 	public void canUpdateEmployee() {
 		// given:
 		Employee emp = new Employee(1, "Dhiren", "Verma", "dhiren@gmail.com");
+		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
+		
 		//Setting Mock Condition:
 		given(employeeRepository.existsById(emp.getId())).
 			willReturn(true);
 		
 		// when:
-		underTest.updateEmployee(emp);
+		underTest.updateEmployee(empDto);
 		
 		// then:
 		ArgumentCaptor<Employee> employeeArgumentCaptor =
@@ -185,6 +191,7 @@ class EmployeeServiceImplTest {
 	public void willThrowWhenUpdateUpdateRequestEmployeeIdNotFound() {
 		// given:
 		Employee emp = new Employee(1, "Dhiren", "Verma", "dhiren@gmail.com");
+		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
 		
 		//Setting Mock Condition:
 		given(employeeRepository.existsById(emp.getId())).
@@ -192,7 +199,7 @@ class EmployeeServiceImplTest {
 		
 		// when:
 		// then:
-		assertThatThrownBy(() -> underTest.updateEmployee(emp)).
+		assertThatThrownBy(() -> underTest.updateEmployee(empDto)).
 			isInstanceOf(EmployeeNotFoundException.class).
 			hasMessageContaining("Employee with Id: "+emp.getId()+" not found!");
 	}

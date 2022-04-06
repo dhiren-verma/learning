@@ -16,7 +16,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import com.learning.spring_boot_demo.crud.dao.EmployeeRepository;
+import com.learning.spring_boot_demo.crud.dto.EmployeeDTO;
 import com.learning.spring_boot_demo.crud.entity.Employee;
+import com.learning.spring_boot_demo.crud.utility.Translator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -54,13 +56,14 @@ class EmployeeRestControllerTest {
 		String email = String.format("%s@gmail.com",
 				StringUtils.trimAllWhitespace(firstName.trim().toLowerCase()));
 		
-		Employee newEmp = new Employee(0, firstName, lastName, email);
+		EmployeeDTO newEmpDto = new EmployeeDTO(0, firstName, lastName, email);
+		Employee newEmp = Translator.translateDTOToEntity(newEmpDto);
 		
 		// when:
 		ResultActions resultActions = mockMvc.
 				perform(post("/api/v1/employees").
 						contentType(MediaType.APPLICATION_JSON).
-						content(objectMapper.writeValueAsString(newEmp)));
+						content(objectMapper.writeValueAsString(newEmpDto)));
 		
 		// then:
 		resultActions.andExpect(status().isCreated());
@@ -85,20 +88,20 @@ class EmployeeRestControllerTest {
 				getResponse().
 				getContentAsString();
 		
-		List<Employee> employees = objectMapper.
+		List<EmployeeDTO> employees = objectMapper.
 				readValue(contentAsString, new TypeReference<>() {});
 		
 		String email = employees.stream().map(emp -> emp.getEmail()).findFirst().orElse("");
 		String firstName = faker.name().firstName();
 		String lastName = faker.name().lastName();
 		
-		Employee newEmp = new Employee(0, firstName, lastName, email);
+		EmployeeDTO newEmpDto = new EmployeeDTO(0, firstName, lastName, email);
 		
 		// when:
 		ResultActions resultAction = mockMvc.
 				perform(post("/api/v1/employees").
 						contentType(MediaType.APPLICATION_JSON).
-						content(objectMapper.writeValueAsString(newEmp)));
+						content(objectMapper.writeValueAsString(newEmpDto)));
 		
 		//then:
 		MvcResult errorMsg = resultAction.andExpect(status().isConflict()).andReturn();
@@ -107,7 +110,7 @@ class EmployeeRestControllerTest {
 				getResponse().
 				getContentAsString();
 		
-		assertThat(errorMsgAsString).isEqualTo("Employee with Email: "+newEmp.getEmail()+" already exists!");
+		assertThat(errorMsgAsString).isEqualTo("Employee with Email: "+newEmpDto.getEmail()+" already exists!");
 	}
 	
 	@Test
@@ -118,22 +121,22 @@ class EmployeeRestControllerTest {
 		String email = String.format("%s@gmail.com",
 				StringUtils.trimAllWhitespace(firstName.trim().toLowerCase()));
 		
-		Employee emp = new Employee(0, firstName, lastName, email);
+		EmployeeDTO empDto = new EmployeeDTO(0, firstName, lastName, email);
 		
 		MvcResult postResult = mockMvc.
 				perform(post("/api/v1/employees").
 						contentType(MediaType.APPLICATION_JSON).
-						content(objectMapper.writeValueAsString(emp))).
+						content(objectMapper.writeValueAsString(empDto))).
 				andExpect(status().isCreated()).andReturn();
 		
 		String postResultAsString = postResult.
 				getResponse().
 				getContentAsString();
 		
-		Employee savedEmp = objectMapper.
+		EmployeeDTO savedEmpDto = objectMapper.
 				readValue(postResultAsString, new TypeReference<>() {});
 		
-		int id = savedEmp.getId();
+		int id = savedEmpDto.getId();
 		
 //		MvcResult getEmployeesResult = mockMvc.
 //				perform(get("/api/v1/employees").
@@ -189,12 +192,12 @@ class EmployeeRestControllerTest {
 		String email = String.format("%s@gmail.com",
 				StringUtils.trimAllWhitespace(firstName.trim().toLowerCase()));
 		
-		Employee newEmp = new Employee(0, firstName, lastName, email);
+		EmployeeDTO newEmpDto = new EmployeeDTO(0, firstName, lastName, email);
 		
 		MvcResult savedEmployeeResult = mockMvc.
 			perform(post("/api/v1/employees").
 				contentType(MediaType.APPLICATION_JSON).
-				content(objectMapper.writeValueAsString(newEmp))).
+				content(objectMapper.writeValueAsString(newEmpDto))).
 			andExpect(status().isCreated()).
 			andReturn();
 		
@@ -202,10 +205,10 @@ class EmployeeRestControllerTest {
 				getResponse().
 				getContentAsString();
 		
-		Employee savedEmp = objectMapper.
+		EmployeeDTO savedEmpDto = objectMapper.
 				readValue(contentAsString, new TypeReference<>() {});
 		
-		int id = savedEmp.getId();
+		int id = savedEmpDto.getId();
 		
 		// when:
 		// then:
@@ -219,13 +222,16 @@ class EmployeeRestControllerTest {
 				getResponse().
 				getContentAsString();
 		
-		Employee foundEmp = objectMapper.
+		EmployeeDTO foundEmpDto = objectMapper.
 				readValue(foundContentAsString, new TypeReference<>() {});
 		
-		assertThat(foundEmp).usingRecursiveComparison().isEqualTo(savedEmp);
+		assertThat(foundEmpDto).usingRecursiveComparison().isEqualTo(savedEmpDto);
+		
 		Employee internalEmp = employeeRepository.findById(id).
 				orElseThrow(() -> new IllegalStateException("Employee with Id: "+id+" not found!"));
-		assertThat(foundEmp).usingRecursiveComparison().isEqualTo(internalEmp);
+		EmployeeDTO internalEmpDto = Translator.translateEntityToDTO(internalEmp);
+		
+		assertThat(foundEmpDto).usingRecursiveComparison().isEqualTo(internalEmpDto);
 	}
 
 	@Test
@@ -256,12 +262,12 @@ class EmployeeRestControllerTest {
 		String email = String.format("%s@gmail.com",
 				StringUtils.trimAllWhitespace(firstName.trim().toLowerCase()));
 		
-		Employee emp = new Employee(0, firstName, lastName, email);
+		EmployeeDTO empDto = new EmployeeDTO(0, firstName, lastName, email);
 		
 		MvcResult savedEmployeeResult = mockMvc.
 				perform(post("/api/v1/employees").
 					contentType(MediaType.APPLICATION_JSON).
-					content(objectMapper.writeValueAsString(emp))).
+					content(objectMapper.writeValueAsString(empDto))).
 				andExpect(status().isCreated()).
 				andReturn();
 		
@@ -269,10 +275,10 @@ class EmployeeRestControllerTest {
 				getResponse().
 				getContentAsString();
 		
-		Employee savedEmp = objectMapper.
+		EmployeeDTO savedEmpDto = objectMapper.
 				readValue(contentAsString, new TypeReference<>() {});
 		
-		int id = savedEmp.getId();
+		int id = savedEmpDto.getId();
 		
 		// when:
 		String updatedFirstName = faker.name().firstName();
@@ -280,13 +286,13 @@ class EmployeeRestControllerTest {
 		String updatedEmail = String.format("%s@gmail.com",
 				StringUtils.trimAllWhitespace(updatedFirstName.trim().toLowerCase()));
 		
-		Employee updateEmp = new Employee(id, updatedFirstName, updatedLastName, updatedEmail);
+		EmployeeDTO updateEmpDto = new EmployeeDTO(id, updatedFirstName, updatedLastName, updatedEmail);
 		
 		// then:
 		MvcResult updatedEmployeeResult = mockMvc.
 				perform(put("/api/v1/employees/"+id).
 						contentType(MediaType.APPLICATION_JSON).
-						content(objectMapper.writeValueAsString(updateEmp)).
+						content(objectMapper.writeValueAsString(updateEmpDto)).
 						accept(MediaType.APPLICATION_JSON)).
 				andExpect(status().isOk()).
 				andReturn();
@@ -295,13 +301,15 @@ class EmployeeRestControllerTest {
 				getResponse().
 				getContentAsString();
 		
-		Employee updatedEmployee = objectMapper.
+		EmployeeDTO updatedEmployeeDto = objectMapper.
 				readValue(foundContentAsString, new TypeReference<>() {});
 		
-		assertThat(updatedEmployee).usingRecursiveComparison().isEqualTo(updateEmp);
+		assertThat(updatedEmployeeDto).usingRecursiveComparison().isEqualTo(updateEmpDto);
+		
 		Employee internalEmp = employeeRepository.findById(id).
 				orElseThrow(() -> new IllegalArgumentException("Employee with Id: " + id + " not found!"));
-		assertThat(updatedEmployee).usingRecursiveComparison().isEqualTo(internalEmp);
+		EmployeeDTO internalEmpDto = Translator.translateEntityToDTO(internalEmp);
+		assertThat(updatedEmployeeDto).usingRecursiveComparison().isEqualTo(internalEmpDto);
 	}
 	
 	@Test
@@ -313,13 +321,13 @@ class EmployeeRestControllerTest {
 		String email = String.format("%s@gmail.com",
 				StringUtils.trimAllWhitespace(firstName.trim().toLowerCase()));
 		
-		Employee emp = new Employee(id, firstName, lastName, email);
+		EmployeeDTO empDto = new EmployeeDTO(id, firstName, lastName, email);
 		
 		// when:
 		ResultActions updateResultAction = mockMvc.
 				perform(put("/api/v1/employees/"+id).
 						contentType(MediaType.APPLICATION_JSON).
-						content(objectMapper.writeValueAsString(emp)).
+						content(objectMapper.writeValueAsString(empDto)).
 						accept(MediaType.APPLICATION_JSON));
 		
 		// then:

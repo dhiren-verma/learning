@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.learning.spring_boot_demo.crud.entity.Employee;
+import com.learning.spring_boot_demo.crud.dto.EmployeeDTO;
 import com.learning.spring_boot_demo.crud.service.EmployeeService;
 
 @RestController
@@ -29,8 +29,8 @@ public class EmployeeRestController {
 	}
 
 	@GetMapping("/employees")
-	public ResponseEntity<List<Employee>> findAllEmployees() {
-		List<Employee> allEmployees = empService.findAllEmployees();
+	public ResponseEntity<List<EmployeeDTO>> findAllEmployees() {
+		List<EmployeeDTO> allEmployees = empService.findAllEmployees();
 		
 		if (allEmployees.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -40,8 +40,8 @@ public class EmployeeRestController {
 	}
 
 	@GetMapping("/employees/{employeeId}")
-	public ResponseEntity<Employee> findEmployeeById(@PathVariable int employeeId) {
-		Employee employee = empService.findEmployeeById(employeeId);
+	public ResponseEntity<EmployeeDTO> findEmployeeById(@PathVariable int employeeId) {
+		EmployeeDTO employee = empService.findEmployeeById(employeeId);
 		
 //		if (employee == null)
 //			throw new RuntimeException("Employee Id not found - " + employeeId);
@@ -50,19 +50,21 @@ public class EmployeeRestController {
 	}
 
 	@PostMapping("/employees")
-	public ResponseEntity<Employee> addEmployee(@RequestBody Employee theEmployee) {
+	public ResponseEntity<EmployeeDTO> addEmployee(@RequestBody EmployeeDTO theEmployee) {
 		//Reset Employee's Id as '0', because if Client sends some other value
 		//and an Employee with that Id already exists, then that Entry will get
 		//updated in DB:
 		theEmployee.setId(0);
 		
-		empService.saveEmployee(theEmployee);
+		int genId = empService.saveEmployee(theEmployee);
+		
+		theEmployee.setId(genId);
 		
 		return new ResponseEntity<>(theEmployee, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/employees/{employeeId}")
-	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee theEmployee,
+	public ResponseEntity<EmployeeDTO> updateEmployee(@RequestBody EmployeeDTO theEmployee,
 			@PathVariable int employeeId) {
 		empService.updateEmployee(theEmployee);
 		

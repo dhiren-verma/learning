@@ -2,18 +2,19 @@ package com.learning.spring_boot_demo.crud.service;
 
 import java.util.List;
 
-import com.learning.spring_boot_demo.crud.entity.Employee;
+import com.learning.spring_boot_demo.crud.dto.EmployeeDTO;
+//import com.learning.spring_boot_demo.crud.entity.Employee;
 
 public interface EmployeeService {
 	
-	public List<Employee> findAllEmployees();
+	public List<EmployeeDTO> findAllEmployees();
 	
-	public Employee findEmployeeById(int id);
+	public EmployeeDTO findEmployeeById(int id);
 	
-	public void saveEmployee(Employee theEmployee);
+	public int saveEmployee(EmployeeDTO theEmployee);
 	
 //	public void updateEmployee(Employee theEmployee, int id);
-	public void updateEmployee(Employee theEmployee);
+	public void updateEmployee(EmployeeDTO theEmployee);
 	
 	public void deleteEmployeeById(int id);
 
