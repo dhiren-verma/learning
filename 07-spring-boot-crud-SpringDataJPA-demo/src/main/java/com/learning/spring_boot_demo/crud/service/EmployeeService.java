@@ -3,7 +3,6 @@ package com.learning.spring_boot_demo.crud.service;
 import java.util.List;
 
 import com.learning.spring_boot_demo.crud.dto.EmployeeDTO;
-//import com.learning.spring_boot_demo.crud.entity.Employee;
 
 public interface EmployeeService {
 	

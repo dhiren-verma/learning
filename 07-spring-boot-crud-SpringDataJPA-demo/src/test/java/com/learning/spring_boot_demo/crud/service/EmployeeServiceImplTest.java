@@ -94,6 +94,11 @@ class EmployeeServiceImplTest {
 		// given:
 		Employee emp = new Employee(1, "Jamila", "Cabilo", "jamila@gmail.com");
 		EmployeeDTO empDto = Translator.translateEntityToDTO(emp);
+		
+		// Setting Mock Condition:
+		given(employeeRepository.save(emp)).
+			willReturn(emp);
+		
 		// when:
 		underTest.saveEmployee(empDto);
 		
